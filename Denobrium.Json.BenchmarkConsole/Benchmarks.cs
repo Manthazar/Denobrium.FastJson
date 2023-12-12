@@ -1,5 +1,5 @@
-﻿using Denobrium.Json.Benchmarks;
-using consoletest.DataObjects;
+﻿using Denobrium.Json.Benchmark.DataObjects;
+using Denobrium.Json.Benchmark.Workers;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Linq;
 
-namespace consoletest
+namespace Denobrium.Json.Benchmark
 {
     public static partial class Benchmarks
     {

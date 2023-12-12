@@ -1,8 +1,7 @@
-﻿using consoletest;
-using consoletest.DataObjects;
+﻿using Denobrium.Json.Benchmark.DataObjects;
 using Newtonsoft.Json;
 
-namespace Denobrium.Json.Benchmarks
+namespace Denobrium.Json.Benchmark.Workers
 {
     internal class NewtonsoftBenchmarks
     {

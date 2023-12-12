@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace consoletest
+namespace Denobrium.Json.Benchmark
 {
     class Program
     {

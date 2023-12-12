@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Runtime.Serialization;
 
-namespace consoletest.DataObjects
+namespace Denobrium.Json.Benchmark.DataObjects
 {
     [DataContract(Name = "FastJsonBenchmarkClass")]
     public class BenchmarkDataClass

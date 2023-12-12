@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
-namespace consoletest.DataObjects
+namespace Denobrium.Json.Benchmark.DataObjects
 {
     [DataContract(Name = "Class2")]
     public class Class2 : BaseClass

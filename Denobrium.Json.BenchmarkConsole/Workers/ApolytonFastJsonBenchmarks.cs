@@ -1,7 +1,7 @@
-﻿using consoletest;
-using consoletest.DataObjects;
+﻿using Denobrium.Json.Benchmark;
+using Denobrium.Json.Benchmark.DataObjects;
 
-namespace Denobrium.Json.Benchmarks
+namespace Denobrium.Json.Benchmark.Workers
 {
     internal class ApolytonFastJsonBenchmarks 
     {

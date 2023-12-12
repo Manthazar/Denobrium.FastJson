@@ -1,9 +1,8 @@
-﻿using Denobrium.Json.Data;
-using consoletest.DataObjects;
+﻿using Denobrium.Json.Benchmark.DataObjects;
+using Denobrium.Json.Data;
 using System;
-using System.Diagnostics;
 
-namespace consoletest
+namespace Denobrium.Json.Benchmark
 {
     public static partial class Benchmarks
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace consoletest
+namespace Denobrium.Json.Benchmark
 {
 	public static partial class Benchmarks
 	{

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using consoletest.DataObjects;
-
-namespace consoletest
+﻿namespace Denobrium.Json.Benchmark
 {
     public static partial class Benchmarks
     {

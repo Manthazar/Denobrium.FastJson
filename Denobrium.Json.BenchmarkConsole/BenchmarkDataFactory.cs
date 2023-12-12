@@ -1,10 +1,10 @@
-﻿using consoletest.DataObjects;
+﻿using Denobrium.Json.Benchmark.DataObjects;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 
-namespace consoletest
+namespace Denobrium.Json.Benchmark
 {
     internal static class BenchmarkDataFactory
     {

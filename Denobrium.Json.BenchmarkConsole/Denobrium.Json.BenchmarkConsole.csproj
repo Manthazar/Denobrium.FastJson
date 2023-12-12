@@ -5,8 +5,8 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Denobrium.Json.Console</RootNamespace>
-    <AssemblyName>Denobrium.Json.Console</AssemblyName>
+    <RootNamespace>Denobrium.Json.Benchmark</RootNamespace>
+    <AssemblyName>Denobrium.Json.Benchmark</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
@@ -127,9 +127,9 @@
     <Compile Include="Benchmarks.BinaryFormatter.cs" />
     <Compile Include="Benchmarks.Newtonsoft.Json.cs" />
     <Compile Include="Benchmarks.cs" />
-    <Compile Include="Benchmarks\ApolytonFastJsonBenchmarks.cs" />
-    <Compile Include="Benchmarks\BenchmarkWorker.cs" />
-    <Compile Include="Benchmarks\NewtonsoftBenchmarks.cs" />
+    <Compile Include="Workers\ApolytonFastJsonBenchmarks.cs" />
+    <Compile Include="Workers\BenchmarkWorker.cs" />
+    <Compile Include="Workers\NewtonsoftBenchmarks.cs" />
     <Compile Include="DataObjects\BaseClass.cs" />
     <Compile Include="DataObjects\Class1.cs" />
     <Compile Include="DataObjects\Class2.cs" />

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace consoletest
+namespace Denobrium.Json.Benchmark
 {
     internal class BenchmarkOptions
     {
@@ -12,7 +12,7 @@ namespace consoletest
 
         internal bool IncludeExotic { get; set; } = false;
 
-        private static Lazy<BenchmarkOptions> current = new Lazy<BenchmarkOptions>(isThreadSafe:true);
+        private static readonly Lazy<BenchmarkOptions> current = new Lazy<BenchmarkOptions>(isThreadSafe:true);
 
         internal static BenchmarkOptions Current => current.Value;
     }

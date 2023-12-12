@@ -1,12 +1,10 @@
-﻿using System;
+﻿using Denobrium.Json.Benchmark.DataObjects;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
-using consoletest.DataObjects;
+using System.Runtime.Serialization.Formatters.Binary;
 
-namespace consoletest
+namespace Denobrium.Json.Benchmark
 {
     public static partial class Benchmarks
     {
