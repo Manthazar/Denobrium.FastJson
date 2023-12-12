@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Denobrium.Json.Benchmark.Workers
 {
-    internal abstract class BenchmarkWorker<T>
+    internal abstract class Worker<T>
     {
         private IList<long> durations = new List<long>();
 

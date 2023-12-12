@@ -4,6 +4,7 @@ using System.Runtime.Serialization;
 namespace Denobrium.Json.Benchmark.DataObjects
 {
     [DataContract(Name = "Class1")]
+    [Serializable]
     public class Class1 : BaseClass
     {
         public Class1() { }

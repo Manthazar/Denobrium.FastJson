@@ -26,37 +26,25 @@ namespace Denobrium.Json.Benchmark
         {
             WriteHeader();
 
-            Console.WriteLine("\n==== SERIALIZATION   ====");
-            //BinaryFormatterBenchmark.Serialize();
-            ApolytonFastJsonBenchmarks_Old.Serialize();
+            Console.WriteLine("\n");
+            Console.WriteLine("==== SERIALIZATION   ====");
+            new DenobriumJsonBenchmarks.Serialize().Work();
 
-            Console.WriteLine("\n\n==== DESERIALIZATION ====");
-            //BinaryFormatterBenchmark.Deserialize();
-            ApolytonFastJsonBenchmarks_Old.Deserialize_JsonValue();
-            ApolytonFastJsonBenchmarks_Old.Deserialize();
-            new ApolytonFastJsonBenchmarks.Deserialize_Into_DataClass().Work();
+            new NewtonsoftBenchmarks.Serialize().Work();
+            new BinaryFormatterBenchmarks.Serialize().Work();
+
+            Console.WriteLine("\n\n");
+            Console.WriteLine("==== DESERIALIZATION ====");
+            new DenobriumJsonBenchmarks.Deserialize_Into_DataClass().Work();
+            new DenobriumJsonBenchmarks.Deserialize_Into_JsonValue().Work();
+            new DenobriumJsonBenchmarks.Deserialize_BuildUp().Work();
+
             new NewtonsoftBenchmarks.Deserialize_Into_DataClass().Work();
+            new BinaryFormatterBenchmarks.Deserialize_Into_DataClass().Work();
+
             //ApolytonFastJsonBenchmarks.Deserialize_JsonObject_BuildUp_NoTypeExtension();
             //ApolytonFastJsonBenchmarks.Deserialize_JsonObject_BuildUp_DataContractTypeExtension();
-            
             //ApolytonFastJsonBenchmarks.DeserializeByType();
-
-            #region [ other tests]
-
-            //			litjson_serialize();
-            //			jsonnet_serialize();
-            //			jsonnet4_serialize();
-            //stack_serialize();
-
-            //systemweb_deserialize();
-            //bin_deserialize();
-            //fastjson_deserialize();
-
-            //			litjson_deserialize();
-            //			jsonnet_deserialize();
-            //			jsonnet4_deserialize();
-            //			stack_deserialize();
-            #endregion
         }
 
         private static void WriteHeader()

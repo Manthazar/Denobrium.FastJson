@@ -7,6 +7,7 @@ using System.Runtime.Serialization;
 namespace Denobrium.Json.Benchmark.DataObjects
 {
     [DataContract(Name = "FastJsonBenchmarkClass")]
+    [Serializable]
     public class BenchmarkDataClass
     {
         public BenchmarkDataClass()
