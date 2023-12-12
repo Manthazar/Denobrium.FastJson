@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using System.IO;
-using System.Reflection;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Diagnostics;
 
 namespace consoletest
 {
@@ -17,12 +10,17 @@ namespace consoletest
         /// <param name="args"></param>
         public static void Main(string[] args)
         {
+            Console.WriteLine("Apolyton.FastJson indicative benchmark tool.");
+
+            Console.WriteLine("ENVIRONMENT");
             Console.WriteLine(".net version = " + Environment.Version);
-            Console.WriteLine("Press key : (E)xotic ");
+
+            Console.WriteLine("OPTIONS");
+            Console.WriteLine("Include exotic types?: (E)");
 
             if (Console.ReadKey().Key == ConsoleKey.E)
             {
-                Benchmarks.exotic = true;
+                BenchmarkOptions.Current.IncludeExotic = true;
             }
 
             Benchmarks.Run();

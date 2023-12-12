@@ -1,25 +1,21 @@
-﻿using System;
-using System.Linq;
+﻿using Apolyton.FastJson.Benchmarks;
+using consoletest.DataObjects;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using consoletest.DataObjects;
+using System.Linq;
 
 namespace consoletest
 {
     public static partial class Benchmarks
     {
-        private static int count = 1500;
-        private static int tcount = 5;
+        private static int iterationsPerRun = 1500;
+        private static int numberOfRuns = 5;
         private static DataSet ds = new DataSet();
-        private static bool includeDataSet = false;
         private static Stopwatch stopwatch;
         private static List<long> testRunDurations;
-
-        internal static bool exotic = false;
 
         static Benchmarks()
         {
@@ -28,38 +24,23 @@ namespace consoletest
 
         internal static void Run()
         {
-            if (Console.BufferWidth < 100)
-            {
-                Console.BufferWidth = 100;
-            }
-
-            Console.WriteLine(String.Format("{0} runs with {1} samples.", tcount, count));
-
-            if (exotic)
-            {
-                Console.WriteLine("Exotic types without embedded dataset");
-                includeDataSet = false;
-            }
-
-            if (includeDataSet)
-            {
-                ds = CreateTestedDataset();
-            }
+            WriteHeader();
 
             Console.WriteLine("\n==== SERIALIZATION   ====");
             //BinaryFormatterBenchmark.Serialize();
-            FastJsonBenchmarks.Serialize();
-            ApolytonFastJsonBenchmarks.Serialize();
+            ApolytonFastJsonBenchmarks_Old.Serialize();
 
             Console.WriteLine("\n\n==== DESERIALIZATION ====");
             //BinaryFormatterBenchmark.Deserialize();
-            FastJsonBenchmarks.Deserialize();
-            ApolytonFastJsonBenchmarks.Deserialize_JsonValue();
-            ApolytonFastJsonBenchmarks.Deserialize_JsonObject_BuildUp_NoTypeExtension();
-            ApolytonFastJsonBenchmarks.Deserialize_JsonObject_BuildUp_DataContractTypeExtension();
-            ApolytonFastJsonBenchmarks.Deserialize();
-            ApolytonFastJsonBenchmarks.DeserializeByType();
+            ApolytonFastJsonBenchmarks_Old.Deserialize_JsonValue();
+            ApolytonFastJsonBenchmarks_Old.Deserialize();
+            new ApolytonFastJsonBenchmarks.Deserialize_Into_DataClass().Work();
+            new NewtonsoftBenchmarks.Deserialize_Into_DataClass().Work();
+            //ApolytonFastJsonBenchmarks.Deserialize_JsonObject_BuildUp_NoTypeExtension();
+            //ApolytonFastJsonBenchmarks.Deserialize_JsonObject_BuildUp_DataContractTypeExtension();
             
+            //ApolytonFastJsonBenchmarks.DeserializeByType();
+
             #region [ other tests]
 
             //			litjson_serialize();
@@ -78,6 +59,22 @@ namespace consoletest
             #endregion
         }
 
+        private static void WriteHeader()
+        {
+            if (Console.BufferWidth < 100)
+            {
+                Console.BufferWidth = 100;
+            }
+
+            Console.WriteLine(String.Format("{0} runs with {1} samples.", numberOfRuns, iterationsPerRun));
+
+            if (BenchmarkOptions.Current.IncludeExotic)
+            {
+                Console.WriteLine("Exotic types without embedded dataset");
+                BenchmarkOptions.Current.IncludeDataSet = false;
+            }
+        }
+
         private static void InitTestRun()
         {
             testRunDurations = new List<long>();
@@ -87,7 +84,7 @@ namespace consoletest
         {
             if (!excludeFirst)
             {
-                Console.Write("\t=>" + Math.Round(testRunDurations.Average(),0));
+                Console.Write("\t=>" + Math.Round(testRunDurations.Average(), 0));
             }
             else
             {
@@ -96,14 +93,14 @@ namespace consoletest
             }
         }
 
-        private static FastJsonBenchmarkClass CreateTestedObject()
+        private static BenchmarkDataClass CreateTestedObject()
         {
-            var c = new FastJsonBenchmarkClass();
+            var c = new BenchmarkDataClass();
 
             c.booleanValue = true;
             c.ordinaryDecimal = 3;
 
-            if (exotic)
+            if (BenchmarkOptions.Current.IncludeExotic)
             {
                 c.nullableGuid = Guid.NewGuid();
                 c.hash = new Hashtable();
@@ -113,7 +110,7 @@ namespace consoletest
                 c.intDictionary = new Dictionary<int, BaseClass>();
                 c.nullableDouble = 100.003;
 
-                if (includeDataSet)
+                if (BenchmarkOptions.Current.IncludeDataSet)
                 {
                     c.dataset = ds;
                 }
@@ -146,44 +143,6 @@ namespace consoletest
             c.laststring = "" + DateTime.Now;
 
             return c;
-        }
-
-        private static DataSet CreateTestedDataset()
-        {
-            DataSet ds = new DataSet();
-
-            for (int j = 1; j < 3; j++)
-            {
-                DataTable dt = new DataTable();
-                dt.TableName = "Table" + j;
-                dt.Columns.Add("col1", typeof(int));
-                dt.Columns.Add("col2", typeof(string));
-                dt.Columns.Add("col3", typeof(Guid));
-                dt.Columns.Add("col4", typeof(string));
-                dt.Columns.Add("col5", typeof(bool));
-                dt.Columns.Add("col6", typeof(string));
-                dt.Columns.Add("col7", typeof(string));
-                ds.Tables.Add(dt);
-
-                Random rrr = new Random();
-
-                for (int i = 0; i < 100; i++)
-                {
-                    DataRow dr = dt.NewRow();
-
-                    dr[0] = rrr.Next(int.MaxValue);
-                    dr[1] = "" + rrr.Next(int.MaxValue);
-                    dr[2] = Guid.NewGuid();
-                    dr[3] = "" + rrr.Next(int.MaxValue);
-                    dr[4] = true;
-                    dr[5] = "" + rrr.Next(int.MaxValue);
-                    dr[6] = "" + rrr.Next(int.MaxValue);
-
-                    dt.Rows.Add(dr);
-                }
-            }
-
-            return ds;
         }
     }
 }

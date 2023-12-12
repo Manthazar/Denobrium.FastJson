@@ -121,14 +121,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="BenchmarkDataFactory.cs" />
+    <Compile Include="BenchmarkOptions.cs" />
     <Compile Include="Benchmarks.ApolytonFastJson.cs" />
     <Compile Include="Benchmarks.BinaryFormatter.cs" />
     <Compile Include="Benchmarks.Newtonsoft.Json.cs" />
     <Compile Include="Benchmarks.cs" />
+    <Compile Include="Benchmarks\ApolytonFastJsonBenchmarks.cs" />
+    <Compile Include="Benchmarks\BenchmarkWorker.cs" />
+    <Compile Include="Benchmarks\NewtonsoftBenchmarks.cs" />
     <Compile Include="DataObjects\BaseClass.cs" />
     <Compile Include="DataObjects\Class1.cs" />
     <Compile Include="DataObjects\Class2.cs" />
-    <Compile Include="DataObjects\FastJsonBenchmarkClass.cs" />
+    <Compile Include="DataObjects\BenchmarkDataClass.cs" />
     <Compile Include="DataObjects\Gender.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>

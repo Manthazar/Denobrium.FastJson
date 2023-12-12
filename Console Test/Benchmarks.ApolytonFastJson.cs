@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Apolyton.FastJson.Data;
+﻿using Apolyton.FastJson.Data;
 using consoletest.DataObjects;
+using System;
+using System.Diagnostics;
 
 namespace consoletest
 {
     public static partial class Benchmarks
     {
-        private class ApolytonFastJsonBenchmarks
+        private class ApolytonFastJsonBenchmarks_Old
         {
             /// <summary>
             /// Deserialize from a string with type information.
@@ -18,7 +16,7 @@ namespace consoletest
             {
                 Console.WriteLine();
                 Console.Write("(A4) JSON readobject                  ");
-                FastJsonBenchmarkClass c = CreateTestedObject();
+                BenchmarkDataClass c = CreateTestedObject();
 
                 // Type information needs to be in the string, otherwise readobject doesn't work.
                 Apolyton.FastJson.Json.Current.DefaultParameters.UseTypeExtension = true;
@@ -27,16 +25,16 @@ namespace consoletest
 
                 InitTestRun();
 
-                for (int pp = 0; pp < tcount; pp++)
+                for (int pp = 0; pp < numberOfRuns; pp++)
                 {
                     stopwatch.Reset();
                     stopwatch.Start();
 
-                    FastJsonBenchmarkClass deserializedStore;
+                    BenchmarkDataClass deserializedStore;
 
-                    for (int i = 0; i < count; i++)
+                    for (int i = 0; i < iterationsPerRun; i++)
                     {
-                        deserializedStore = (FastJsonBenchmarkClass)Apolyton.FastJson.Json.Current.ReadObject(jsonText);
+                        deserializedStore = (BenchmarkDataClass)Apolyton.FastJson.Json.Current.ReadObject(jsonText);
                     }
 
                     stopwatch.Stop();
@@ -54,22 +52,22 @@ namespace consoletest
             {
                 Console.WriteLine();
                 Console.Write("(A5) JSON readobject with given type ");
-                FastJsonBenchmarkClass c = CreateTestedObject();
+                BenchmarkDataClass c = CreateTestedObject();
 
                 // No type information needs to be in the string, since we will provide the root level element later.s
                 string jsonText = Apolyton.FastJson.Json.Current.ToJson(c); 
                 InitTestRun();
 
-                for (int pp = 0; pp < tcount; pp++)
+                for (int pp = 0; pp < numberOfRuns; pp++)
                 {
                     stopwatch.Reset();
                     stopwatch.Start();
 
-                    FastJsonBenchmarkClass deserializedStore;
+                    BenchmarkDataClass deserializedStore;
 
-                    for (int i = 0; i < count; i++)
+                    for (int i = 0; i < iterationsPerRun; i++)
                     {
-                        deserializedStore = (FastJsonBenchmarkClass)Apolyton.FastJson.Json.Current.ReadObject(jsonText, typeof(FastJsonBenchmarkClass));
+                        deserializedStore = (BenchmarkDataClass)Apolyton.FastJson.Json.Current.ReadObject(jsonText, typeof(BenchmarkDataClass));
                     }
 
                     stopwatch.Stop();
@@ -87,21 +85,21 @@ namespace consoletest
             {
                 Console.WriteLine();
                 Console.Write("(A3) JSON decode JsonValue         ");
-                FastJsonBenchmarkClass c = CreateTestedObject();
+                BenchmarkDataClass c = CreateTestedObject();
 
                 Apolyton.FastJson.Json.Current.DefaultParameters.UseTypeExtension = false;
                 string jsonText = Apolyton.FastJson.Json.Current.ToJson(c);
 
                 InitTestRun();
 
-                for (int pp = 0; pp < tcount; pp++)
+                for (int pp = 0; pp < numberOfRuns; pp++)
                 {
                     stopwatch.Reset();
                     stopwatch.Start();
 
                     JsonObject deserializedStore;
 
-                    for (int i = 0; i < count; i++)
+                    for (int i = 0; i < iterationsPerRun; i++)
                     {
                         deserializedStore = (JsonObject)Apolyton.FastJson.Json.Current.ReadJsonValue(jsonText);
                     }
@@ -121,23 +119,23 @@ namespace consoletest
             {
                 Console.WriteLine();
                 Console.Write("(A2) JSON decode JVal+Bld           ");
-                FastJsonBenchmarkClass c = CreateTestedObject();
-                FastJsonBenchmarkClass target;
+                BenchmarkDataClass c = CreateTestedObject();
+                BenchmarkDataClass target;
 
                 Apolyton.FastJson.Json.Current.DefaultParameters.UseTypeExtension = false;
                 string jsonText = Apolyton.FastJson.Json.Current.ToJson(c);
 
                 InitTestRun();
 
-                for (int pp = 0; pp < tcount; pp++)
+                for (int pp = 0; pp < numberOfRuns; pp++)
                 {
                     stopwatch.Reset();
                     stopwatch.Start();
 
                     JsonObject deserializedStore;
-                    target = new FastJsonBenchmarkClass();
+                    target = new BenchmarkDataClass();
 
-                    for (int i = 0; i < count; i++)
+                    for (int i = 0; i < iterationsPerRun; i++)
                     {
                         deserializedStore = (JsonObject)Apolyton.FastJson.Json.Current.ReadJsonValue(jsonText);
                         Apolyton.FastJson.Json.Current.BuildUp(target, deserializedStore);
@@ -159,23 +157,23 @@ namespace consoletest
             {
                 Console.WriteLine();
                 Console.Write("(A1) JSON decode JVal                 ");
-                FastJsonBenchmarkClass c = CreateTestedObject();
-                FastJsonBenchmarkClass target;
+                BenchmarkDataClass c = CreateTestedObject();
+                BenchmarkDataClass target;
 
                 Apolyton.FastJson.Json.Current.DefaultParameters.UseTypeExtension = false;
                 string jsonText = Apolyton.FastJson.Json.Current.ToJson(c);
 
                 InitTestRun();
 
-                for (int pp = 0; pp < tcount; pp++)
+                for (int pp = 0; pp < numberOfRuns; pp++)
                 {
                     stopwatch.Reset();
                     stopwatch.Start();
 
                     JsonObject deserializedStore;
-                    target = new FastJsonBenchmarkClass();
+                    target = new BenchmarkDataClass();
 
-                    for (int i = 0; i < count; i++)
+                    for (int i = 0; i < iterationsPerRun; i++)
                     {
                         deserializedStore = (JsonObject)Apolyton.FastJson.Json.Current.ReadJsonValue(jsonText);
                     }
@@ -196,8 +194,8 @@ namespace consoletest
             {
                 Console.WriteLine();
                 Console.Write("(A3) JSON decode JVal+Bld+TExt+DC");
-                FastJsonBenchmarkClass c = CreateTestedObject();
-                FastJsonBenchmarkClass target;
+                BenchmarkDataClass c = CreateTestedObject();
+                BenchmarkDataClass target;
 
                 Apolyton.FastJson.Json.Current.DefaultParameters.UseTypeExtension = true;
                 Apolyton.FastJson.Json.Current.DefaultParameters.RegisterTypeDescriptor(
@@ -206,15 +204,15 @@ namespace consoletest
 
                 InitTestRun();
 
-                for (int pp = 0; pp < tcount; pp++)
+                for (int pp = 0; pp < numberOfRuns; pp++)
                 {
                     stopwatch.Reset();
                     stopwatch.Start();
 
                     JsonObject deserializedStore;
-                    target = new FastJsonBenchmarkClass();
+                    target = new BenchmarkDataClass();
 
-                    for (int i = 0; i < count; i++)
+                    for (int i = 0; i < iterationsPerRun; i++)
                     {
                         deserializedStore = (JsonObject)Apolyton.FastJson.Json.Current.ReadJsonValue(jsonText);
                         Apolyton.FastJson.Json.Current.BuildUp(target, deserializedStore);
@@ -235,17 +233,17 @@ namespace consoletest
             {
                 Console.WriteLine();
                 Console.Write("(A) FastJSON encode      ");
-                FastJsonBenchmarkClass c = CreateTestedObject();
+                BenchmarkDataClass c = CreateTestedObject();
 
                 InitTestRun();
 
-                for (int pp = 0; pp < tcount; pp++)
+                for (int pp = 0; pp < numberOfRuns; pp++)
                 {
                     stopwatch.Reset();
                     stopwatch.Start();
                     string jsonText = null;
 
-                    for (int i = 0; i < count; i++)
+                    for (int i = 0; i < iterationsPerRun; i++)
                     {
                         jsonText = Apolyton.FastJson.Json.Current.ToJson(c);
                     }

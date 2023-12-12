@@ -16,10 +16,10 @@ namespace consoletest
             {
                 Console.WriteLine();
                 Console.Write("bin deserialize");
-                FastJsonBenchmarkClass c = CreateTestedObject();
+                BenchmarkDataClass c = CreateTestedObject();
                 List<long> testRuns = new List<long>();
 
-                for (int pp = 0; pp < tcount; pp++)
+                for (int pp = 0; pp < numberOfRuns; pp++)
                 {
                     stopwatch.Reset();
                     stopwatch.Start();
@@ -27,13 +27,13 @@ namespace consoletest
                     BinaryFormatter bf = new BinaryFormatter();
                     MemoryStream ms = new MemoryStream();
                     bf.Serialize(ms, c);
-                    FastJsonBenchmarkClass deserializedStore = null;
+                    BenchmarkDataClass deserializedStore = null;
                     //Console.WriteLine(" size = " +ms.Length);
 
-                    for (int i = 0; i < count; i++)
+                    for (int i = 0; i < iterationsPerRun; i++)
                     {
                         ms.Seek(0L, SeekOrigin.Begin);
-                        deserializedStore = (FastJsonBenchmarkClass)bf.Deserialize(ms);
+                        deserializedStore = (BenchmarkDataClass)bf.Deserialize(ms);
                     }
 
                     stopwatch.Stop();
@@ -47,11 +47,11 @@ namespace consoletest
             internal static void Serialize()
             {
                 Console.Write("\r\nbin serialize");
-                FastJsonBenchmarkClass c = CreateTestedObject();
+                BenchmarkDataClass c = CreateTestedObject();
 
                 InitTestRun();
 
-                for (int pp = 0; pp < tcount; pp++)
+                for (int pp = 0; pp < numberOfRuns; pp++)
                 {
                     stopwatch.Reset();
                     stopwatch.Start();
@@ -60,7 +60,7 @@ namespace consoletest
                     BinaryFormatter bf = new BinaryFormatter();
                     MemoryStream ms = new MemoryStream();
 
-                    for (int i = 0; i < count; i++)
+                    for (int i = 0; i < iterationsPerRun; i++)
                     {
                         ms = new MemoryStream();
                         bf.Serialize(ms, c);

@@ -7,9 +7,9 @@ using System.Runtime.Serialization;
 namespace consoletest.DataObjects
 {
     [DataContract(Name = "FastJsonBenchmarkClass")]
-    public class FastJsonBenchmarkClass
+    public class BenchmarkDataClass
     {
-        public FastJsonBenchmarkClass()
+        public BenchmarkDataClass()
         {
             items = new List<BaseClass>();
             date = DateTime.Now;
