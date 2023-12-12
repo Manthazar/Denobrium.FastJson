@@ -124,6 +124,7 @@
     <Compile Include="BenchmarkDataFactory.cs" />
     <Compile Include="BenchmarkOptions.cs" />
     <Compile Include="Benchmarks.cs" />
+    <Compile Include="Samples\DataContractSample.cs" />
     <Compile Include="Workers\BinaryFormatterBenchmarks.cs" />
     <Compile Include="Workers\DefaultDeserializationWorker.cs" />
     <Compile Include="Workers\DefaultSerializationWorker.cs" />
