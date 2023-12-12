@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using Apolyton.FastJson.Tests.Helpers;
-using Apolyton.FastJson.Tests.Helpers.ComplexTypes;
-using Apolyton.FastJson.Tests.Helpers.ParameterRelated;
-using Apolyton.FastJson.TestsHelpers.ParameterRelated;
-using Apolyton.FastJson.TestsHelpers.StandardTypes;
+using Denobrium.Json.Tests.Helpers;
+using Denobrium.Json.Tests.Helpers.ComplexTypes;
+using Denobrium.Json.Tests.Helpers.ParameterRelated;
+using Denobrium.Json.TestsHelpers.ParameterRelated;
+using Denobrium.Json.TestsHelpers.StandardTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Apolyton.FastJson.Tests.Helpers.StandardTypes;
-using Apolyton.FastJson.Registry;
-using Apolyton.FastJson.Tests.Helpers.Polymorphism;
+using Denobrium.Json.Tests.Helpers.StandardTypes;
+using Denobrium.Json.Registry;
+using Denobrium.Json.Tests.Helpers.Polymorphism;
 
-namespace Apolyton.FastJson.Tests
+namespace Denobrium.Json.Tests
 {
     [TestClass]
     public class JsonSerializerTests
@@ -483,7 +483,7 @@ namespace Apolyton.FastJson.Tests
 
             var jsonString = new JsonSerializer(parameters).Serialize(zoo);
             Assert.AreEqual(
-                "{\"$type\":\"Apolyton.FastJson.Tests.Helpers.Polymorphism.Zoo\",\"Animals\":[{\"$type\":\"doggy\",\"Power\":4},{\"$type\":\"kitty\",\"Cuteness\":2}]}",
+                "{\"$type\":\"Denobrium.Json.Tests.Helpers.Polymorphism.Zoo\",\"Animals\":[{\"$type\":\"doggy\",\"Power\":4},{\"$type\":\"kitty\",\"Cuteness\":2}]}",
                 jsonString);
         }
 

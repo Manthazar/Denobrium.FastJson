@@ -9,10 +9,10 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
-using Apolyton.FastJson.Registry;
-using Apolyton.FastJson.Data;
+using Denobrium.Json.Registry;
+using Denobrium.Json.Data;
 
-namespace Apolyton.FastJson
+namespace Denobrium.Json
 {
     /// <summary>
     /// Represents a json serializer.

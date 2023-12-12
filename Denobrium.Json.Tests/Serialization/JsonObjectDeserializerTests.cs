@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Linq;
-using Apolyton.FastJson;
-using Apolyton.FastJson.Serialization;
-using Apolyton.FastJson.Tests.Helpers;
-using Apolyton.FastJson.TestsHelpers.StandardTypes;
+using Denobrium.Json;
+using Denobrium.Json.Serialization;
+using Denobrium.Json.Tests.Helpers;
+using Denobrium.Json.TestsHelpers.StandardTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Apolyton.FastJson.Tests.Helpers.ComplexTypes;
-using Apolyton.FastJson.Tests.Data.Helpers.StandardTypes;
+using Denobrium.Json.Tests.Helpers.ComplexTypes;
+using Denobrium.Json.Tests.Data.Helpers.StandardTypes;
 
-namespace Apolyton.FastJson.Tests
+namespace Denobrium.Json.Tests
 {
     [TestClass]
     public class JsonObjectDeserializerTests

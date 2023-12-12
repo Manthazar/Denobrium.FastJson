@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Apolyton.FastJson.Tests.Helpers.ComplexTypes;
+using Denobrium.Json.Tests.Helpers.ComplexTypes;
 
-namespace Apolyton.FastJson.Tests.Data.Helpers.StandardTypes
+namespace Denobrium.Json.Tests.Data.Helpers.StandardTypes
 {
     public class EnumClass
     {

@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 
-namespace Apolyton.FastJson.Common
+namespace Denobrium.Json.Common
 {
     /// <summary>
     /// A static helper class that includes various parameter checking routines.

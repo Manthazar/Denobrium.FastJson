@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Runtime.Serialization;
 
-namespace Apolyton.FastJson.TestsHelpers.StandardTypes
+namespace Denobrium.Json.TestsHelpers.StandardTypes
 {
     [DataContract]
     public class StringClass

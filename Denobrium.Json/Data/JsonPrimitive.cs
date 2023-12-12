@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
-using Apolyton.FastJson.Registry;
-using Apolyton.FastJson.Serialization;
+using Denobrium.Json.Registry;
+using Denobrium.Json.Serialization;
 using System.Globalization;
-using Apolyton.FastJson.Common;
+using Denobrium.Json.Common;
 
-namespace Apolyton.FastJson.Data
+namespace Denobrium.Json.Data
 {
     /// <summary>
     /// Represents a json primitive value.

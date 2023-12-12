@@ -5,7 +5,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Runtime.Serialization;
 
-namespace Apolyton.FastJson.Tests.Helpers.RegistryHelpers
+namespace Denobrium.Json.Tests.Helpers.RegistryHelpers
 {
     public class VisibilityScopeClass
     {

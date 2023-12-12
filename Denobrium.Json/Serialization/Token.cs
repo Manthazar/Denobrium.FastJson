@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Apolyton.FastJson.Serialization
+namespace Denobrium.Json.Serialization
 {
     /// <summary>
     /// Represents a token within a json string.

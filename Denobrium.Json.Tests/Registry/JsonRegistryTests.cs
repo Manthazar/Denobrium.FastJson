@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Runtime.Serialization;
-using Apolyton.FastJson.Registry;
-using Apolyton.FastJson.Tests.Helpers.Polymorphism;
-using Apolyton.FastJson.Tests.Helpers.RegistryHelpers;
+using Denobrium.Json.Registry;
+using Denobrium.Json.Tests.Helpers.Polymorphism;
+using Denobrium.Json.Tests.Helpers.RegistryHelpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Apolyton.FastJson.Tests.Registry
+namespace Denobrium.Json.Tests.Registry
 {
     [TestClass]
     public class JsonRegistryTests

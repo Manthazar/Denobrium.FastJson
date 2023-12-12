@@ -1,8 +1,8 @@
 ﻿using System;
-using Apolyton.FastJson.Data;
+using Denobrium.Json.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Apolyton.FastJson.Tests
+namespace Denobrium.Json.Tests
 {
     [TestClass]
     public class JsonHybridDeserializerTests

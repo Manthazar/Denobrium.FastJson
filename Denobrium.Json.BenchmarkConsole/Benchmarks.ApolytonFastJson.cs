@@ -1,4 +1,4 @@
-﻿using Apolyton.FastJson.Data;
+﻿using Denobrium.Json.Data;
 using consoletest.DataObjects;
 using System;
 using System.Diagnostics;
@@ -19,9 +19,9 @@ namespace consoletest
                 BenchmarkDataClass c = CreateTestedObject();
 
                 // Type information needs to be in the string, otherwise readobject doesn't work.
-                Apolyton.FastJson.Json.Current.DefaultParameters.UseTypeExtension = true;
-                string jsonText = Apolyton.FastJson.Json.Current.ToJson(c); 
-                Apolyton.FastJson.Json.Current.DefaultParameters.UseTypeExtension = false;
+                Denobrium.Json.Json.Current.DefaultParameters.UseTypeExtension = true;
+                string jsonText = Denobrium.Json.Json.Current.ToJson(c); 
+                Denobrium.Json.Json.Current.DefaultParameters.UseTypeExtension = false;
 
                 InitTestRun();
 
@@ -34,7 +34,7 @@ namespace consoletest
 
                     for (int i = 0; i < iterationsPerRun; i++)
                     {
-                        deserializedStore = (BenchmarkDataClass)Apolyton.FastJson.Json.Current.ReadObject(jsonText);
+                        deserializedStore = (BenchmarkDataClass)Denobrium.Json.Json.Current.ReadObject(jsonText);
                     }
 
                     stopwatch.Stop();
@@ -55,7 +55,7 @@ namespace consoletest
                 BenchmarkDataClass c = CreateTestedObject();
 
                 // No type information needs to be in the string, since we will provide the root level element later.s
-                string jsonText = Apolyton.FastJson.Json.Current.ToJson(c); 
+                string jsonText = Denobrium.Json.Json.Current.ToJson(c); 
                 InitTestRun();
 
                 for (int pp = 0; pp < numberOfRuns; pp++)
@@ -67,7 +67,7 @@ namespace consoletest
 
                     for (int i = 0; i < iterationsPerRun; i++)
                     {
-                        deserializedStore = (BenchmarkDataClass)Apolyton.FastJson.Json.Current.ReadObject(jsonText, typeof(BenchmarkDataClass));
+                        deserializedStore = (BenchmarkDataClass)Denobrium.Json.Json.Current.ReadObject(jsonText, typeof(BenchmarkDataClass));
                     }
 
                     stopwatch.Stop();
@@ -87,8 +87,8 @@ namespace consoletest
                 Console.Write("(A3) JSON decode JsonValue         ");
                 BenchmarkDataClass c = CreateTestedObject();
 
-                Apolyton.FastJson.Json.Current.DefaultParameters.UseTypeExtension = false;
-                string jsonText = Apolyton.FastJson.Json.Current.ToJson(c);
+                Denobrium.Json.Json.Current.DefaultParameters.UseTypeExtension = false;
+                string jsonText = Denobrium.Json.Json.Current.ToJson(c);
 
                 InitTestRun();
 
@@ -101,7 +101,7 @@ namespace consoletest
 
                     for (int i = 0; i < iterationsPerRun; i++)
                     {
-                        deserializedStore = (JsonObject)Apolyton.FastJson.Json.Current.ReadJsonValue(jsonText);
+                        deserializedStore = (JsonObject)Denobrium.Json.Json.Current.ReadJsonValue(jsonText);
                     }
 
                     stopwatch.Stop();
@@ -122,8 +122,8 @@ namespace consoletest
                 BenchmarkDataClass c = CreateTestedObject();
                 BenchmarkDataClass target;
 
-                Apolyton.FastJson.Json.Current.DefaultParameters.UseTypeExtension = false;
-                string jsonText = Apolyton.FastJson.Json.Current.ToJson(c);
+                Denobrium.Json.Json.Current.DefaultParameters.UseTypeExtension = false;
+                string jsonText = Denobrium.Json.Json.Current.ToJson(c);
 
                 InitTestRun();
 
@@ -137,8 +137,8 @@ namespace consoletest
 
                     for (int i = 0; i < iterationsPerRun; i++)
                     {
-                        deserializedStore = (JsonObject)Apolyton.FastJson.Json.Current.ReadJsonValue(jsonText);
-                        Apolyton.FastJson.Json.Current.BuildUp(target, deserializedStore);
+                        deserializedStore = (JsonObject)Denobrium.Json.Json.Current.ReadJsonValue(jsonText);
+                        Denobrium.Json.Json.Current.BuildUp(target, deserializedStore);
                     }
 
                     stopwatch.Stop();
@@ -160,8 +160,8 @@ namespace consoletest
                 BenchmarkDataClass c = CreateTestedObject();
                 BenchmarkDataClass target;
 
-                Apolyton.FastJson.Json.Current.DefaultParameters.UseTypeExtension = false;
-                string jsonText = Apolyton.FastJson.Json.Current.ToJson(c);
+                Denobrium.Json.Json.Current.DefaultParameters.UseTypeExtension = false;
+                string jsonText = Denobrium.Json.Json.Current.ToJson(c);
 
                 InitTestRun();
 
@@ -175,7 +175,7 @@ namespace consoletest
 
                     for (int i = 0; i < iterationsPerRun; i++)
                     {
-                        deserializedStore = (JsonObject)Apolyton.FastJson.Json.Current.ReadJsonValue(jsonText);
+                        deserializedStore = (JsonObject)Denobrium.Json.Json.Current.ReadJsonValue(jsonText);
                     }
 
                     stopwatch.Stop();
@@ -197,10 +197,10 @@ namespace consoletest
                 BenchmarkDataClass c = CreateTestedObject();
                 BenchmarkDataClass target;
 
-                Apolyton.FastJson.Json.Current.DefaultParameters.UseTypeExtension = true;
-                Apolyton.FastJson.Json.Current.DefaultParameters.RegisterTypeDescriptor(
-                    new Apolyton.FastJson.Registry.DataContractTypeDescriptor(typeof(Benchmarks).Assembly));
-                string jsonText = Apolyton.FastJson.Json.Current.ToJson(c);
+                Denobrium.Json.Json.Current.DefaultParameters.UseTypeExtension = true;
+                Denobrium.Json.Json.Current.DefaultParameters.RegisterTypeDescriptor(
+                    new Denobrium.Json.Registry.DataContractTypeDescriptor(typeof(Benchmarks).Assembly));
+                string jsonText = Denobrium.Json.Json.Current.ToJson(c);
 
                 InitTestRun();
 
@@ -214,8 +214,8 @@ namespace consoletest
 
                     for (int i = 0; i < iterationsPerRun; i++)
                     {
-                        deserializedStore = (JsonObject)Apolyton.FastJson.Json.Current.ReadJsonValue(jsonText);
-                        Apolyton.FastJson.Json.Current.BuildUp(target, deserializedStore);
+                        deserializedStore = (JsonObject)Denobrium.Json.Json.Current.ReadJsonValue(jsonText);
+                        Denobrium.Json.Json.Current.BuildUp(target, deserializedStore);
                     }
 
                     stopwatch.Stop();
@@ -245,7 +245,7 @@ namespace consoletest
 
                     for (int i = 0; i < iterationsPerRun; i++)
                     {
-                        jsonText = Apolyton.FastJson.Json.Current.ToJson(c);
+                        jsonText = Denobrium.Json.Json.Current.ToJson(c);
                     }
 
                     stopwatch.Stop();

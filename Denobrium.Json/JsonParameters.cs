@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Apolyton.FastJson.Common;
-using Apolyton.FastJson.Registry;
-using Apolyton.FastJson.Serialization;
+using Denobrium.Json.Common;
+using Denobrium.Json.Registry;
+using Denobrium.Json.Serialization;
 using System.Diagnostics;
 
-namespace Apolyton.FastJson
+namespace Denobrium.Json
 {
     /// <summary>
     /// Represents the parameters for the json class. Changing instance values at runtime when a (de-)serialization is ongoing on that instance can lead to unexpected outcome. 

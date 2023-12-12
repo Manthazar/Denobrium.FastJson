@@ -7,10 +7,10 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
-using Apolyton.FastJson.Data;
-using Apolyton.FastJson.Registry;
+using Denobrium.Json.Data;
+using Denobrium.Json.Registry;
 
-namespace Apolyton.FastJson.Serialization
+namespace Denobrium.Json.Serialization
 {
     /// <summary>
     /// This class decodes JSON strings. The root level object is always a mutable json array or a mustable json object. 

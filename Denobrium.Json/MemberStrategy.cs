@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Apolyton.FastJson
+namespace Denobrium.Json
 {
     /// <summary>
     /// Determines the serialization policy.

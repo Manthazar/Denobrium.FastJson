@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Apolyton.FastJson.Data;
+using Denobrium.Json.Data;
 using System.Runtime.Serialization;
 using System.Globalization;
-using Apolyton.FastJson.Registry;
+using Denobrium.Json.Registry;
 using System.Collections;
 
-namespace Apolyton.FastJson.Serialization
+namespace Denobrium.Json.Serialization
 {
     /// <summary>
     /// Represents a simple deserializer which returns only the data types of this assembly.

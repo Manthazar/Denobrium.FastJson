@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Apolyton.FastJson.Serialization
+namespace Denobrium.Json.Serialization
 {
     /// <summary>
     /// Specifies serialization options for a DateTime field or property.

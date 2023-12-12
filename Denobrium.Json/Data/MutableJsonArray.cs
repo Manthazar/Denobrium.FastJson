@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Apolyton.FastJson.Data
+namespace Denobrium.Json.Data
 {
     /// <summary>
     /// Represents a json array with already pre-parsed values like int32, double, classes etc.

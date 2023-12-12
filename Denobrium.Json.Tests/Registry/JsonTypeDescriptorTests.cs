@@ -3,11 +3,11 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Apolyton.FastJson.Registry;
-using Apolyton.FastJson.Tests.Helpers.ComplexTypes;
-using Apolyton.FastJson.Tests.Helpers.Polymorphism;
+using Denobrium.Json.Registry;
+using Denobrium.Json.Tests.Helpers.ComplexTypes;
+using Denobrium.Json.Tests.Helpers.Polymorphism;
 
-namespace Apolyton.FastJson.Tests.Registry
+namespace Denobrium.Json.Tests.Registry
 {
     /// <summary>
     /// Summary description for TypeDescriptorTests

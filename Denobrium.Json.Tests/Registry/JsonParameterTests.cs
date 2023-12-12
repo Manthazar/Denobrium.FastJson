@@ -3,10 +3,10 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Apolyton.FastJson.Tests.Helpers.ParameterRelated;
-using Apolyton.FastJson.Tests.Helpers;
+using Denobrium.Json.Tests.Helpers.ParameterRelated;
+using Denobrium.Json.Tests.Helpers;
 
-namespace Apolyton.FastJson.Tests.Registry
+namespace Denobrium.Json.Tests.Registry
 {
     /// <summary>
     /// Summary description for JsonParameterTests

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
-namespace Apolyton.FastJson.Benchmarks
+namespace Denobrium.Json.Benchmarks
 {
     internal abstract class BenchmarkWorker<T>
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Apolyton.FastJson.Registry
+namespace Denobrium.Json.Registry
 {
     /// <remarks>
     /// http://www.codeproject.com/Articles/159450/fastJSON

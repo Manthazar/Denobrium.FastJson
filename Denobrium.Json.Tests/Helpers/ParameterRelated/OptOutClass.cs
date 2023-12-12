@@ -5,7 +5,7 @@ using System.Text;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
 
-namespace Apolyton.FastJson.TestsHelpers.ParameterRelated
+namespace Denobrium.Json.TestsHelpers.ParameterRelated
 {
     public class OptOutClass
     {

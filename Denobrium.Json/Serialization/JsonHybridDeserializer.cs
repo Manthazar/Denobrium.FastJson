@@ -4,10 +4,10 @@ using System.Globalization;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
-using Apolyton.FastJson.Data;
-using Apolyton.FastJson.Serialization;
+using Denobrium.Json.Data;
+using Denobrium.Json.Serialization;
 
-namespace Apolyton.FastJson
+namespace Denobrium.Json
 {
     /// <summary>
     /// This class decodes JSON strings. The root level object is always a mutable json array or a mustable json object. 

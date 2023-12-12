@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Apolyton.FastJson.Tests.Helpers.Polymorphism
+namespace Denobrium.Json.Tests.Helpers.Polymorphism
 {
     [DataContract(Name="doggy")]
     public class Dog : Animal

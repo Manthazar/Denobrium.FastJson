@@ -5,7 +5,7 @@ using System.Text;
 using System.Collections;
 using System.Runtime.Serialization;
 
-namespace Apolyton.FastJson.TestsHelpers.StandardTypes
+namespace Denobrium.Json.TestsHelpers.StandardTypes
 {
     [DataContract]
     public class EnumerableClass

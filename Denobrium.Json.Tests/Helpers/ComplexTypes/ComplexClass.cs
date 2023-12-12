@@ -2,9 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
-using Apolyton.FastJson.Tests.Helpers.ComplexTypes;
+using Denobrium.Json.Tests.Helpers.ComplexTypes;
 
-namespace Apolyton.FastJson.Tests.Helpers
+namespace Denobrium.Json.Tests.Helpers
 {
     public class ComplexClass
     {

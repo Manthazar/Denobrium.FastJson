@@ -5,7 +5,7 @@ using System.Text;
 using System.Globalization;
 using System.Runtime.Serialization;
 
-namespace Apolyton.FastJson.Serialization
+namespace Denobrium.Json.Serialization
 {
     /// <summary>
     /// Represents a base class for json related deserializations.

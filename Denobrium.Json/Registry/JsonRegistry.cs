@@ -5,14 +5,14 @@ using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Runtime.Serialization;
-using Apolyton.FastJson.Serialization;
+using Denobrium.Json.Serialization;
 
 #if DESKTOP
 using System.Data;
 #endif
 
 
-namespace Apolyton.FastJson.Registry
+namespace Denobrium.Json.Registry
 {
     /// <summary>
     /// Represents the registry which holds property information being relevant for serialization/ deserialization. 

@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using System.Collections.Generic;
 
-namespace Apolyton.FastJson.Registry
+namespace Denobrium.Json.Registry
 {
     /// <summary>
     /// Represents a type descriptor which describes types through their DataContract attribute, if present. 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Apolyton.FastJson.Data
+namespace Denobrium.Json.Data
 {
     /// <summary>
     /// Represents a public enumeration of json types.

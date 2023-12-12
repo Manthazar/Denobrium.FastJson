@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Runtime.Serialization;
 
-namespace Apolyton.FastJson.TestsHelpers.ParameterRelated
+namespace Denobrium.Json.TestsHelpers.ParameterRelated
 {
     [DataContract]
     public class OptInClass

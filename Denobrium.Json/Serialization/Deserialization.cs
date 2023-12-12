@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Runtime.Serialization;
 
-namespace Apolyton.FastJson.Serialization
+namespace Denobrium.Json.Serialization
 {
     /// <summary>
     /// This class contains deserialization helpers 

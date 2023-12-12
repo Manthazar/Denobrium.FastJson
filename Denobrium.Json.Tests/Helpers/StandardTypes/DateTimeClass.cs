@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Runtime.Serialization;
-using Apolyton.FastJson.Serialization;
+using Denobrium.Json.Serialization;
 
-namespace Apolyton.FastJson.Tests.Helpers
+namespace Denobrium.Json.Tests.Helpers
 {
     [DataContract]
     public class DateTimeClass

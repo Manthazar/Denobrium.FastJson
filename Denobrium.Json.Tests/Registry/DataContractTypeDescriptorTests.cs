@@ -1,9 +1,9 @@
 ﻿using System;
-using Apolyton.FastJson.Registry;
-using Apolyton.FastJson.Tests.Helpers.Polymorphism;
+using Denobrium.Json.Registry;
+using Denobrium.Json.Tests.Helpers.Polymorphism;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Apolyton.FastJson.Tests.Registry
+namespace Denobrium.Json.Tests.Registry
 {
     /// <summary>
     /// Summary description for DataContractTypeDescriptorTests

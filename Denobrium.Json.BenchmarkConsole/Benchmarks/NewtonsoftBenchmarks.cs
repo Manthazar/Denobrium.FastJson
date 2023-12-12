@@ -2,7 +2,7 @@
 using consoletest.DataObjects;
 using Newtonsoft.Json;
 
-namespace Apolyton.FastJson.Benchmarks
+namespace Denobrium.Json.Benchmarks
 {
     internal class NewtonsoftBenchmarks
     {
@@ -25,10 +25,10 @@ namespace Apolyton.FastJson.Benchmarks
             protected override string CreateContext()
             {
                 // Type information needs to be in the json string, otherwise readobject doesn't work.
-                Apolyton.FastJson.Json.Current.DefaultParameters.UseTypeExtension = true;
+                Denobrium.Json.Json.Current.DefaultParameters.UseTypeExtension = true;
 
                 var dataClass = BenchmarkDataFactory.CreateDefaultDataClass();
-                var jsonText = Apolyton.FastJson.Json.Current.ToJson(dataClass);
+                var jsonText = Denobrium.Json.Json.Current.ToJson(dataClass);
 
                 return jsonText;
             }

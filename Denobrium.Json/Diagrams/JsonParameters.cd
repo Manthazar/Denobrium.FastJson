@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Apolyton.FastJson.JsonParameters">
+  <Class Name="Denobrium.Json.JsonParameters">
     <Position X="0.75" Y="0.5" Width="2.75" />
     <Members>
       <Field Name="_deserialization" Hidden="true" />
@@ -23,14 +23,14 @@
       <FileName>JsonParameters.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Apolyton.FastJson.JsonDeserializationParameters">
+  <Class Name="Denobrium.Json.JsonDeserializationParameters">
     <Position X="4" Y="0.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>JsonDeserializationParameters.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Apolyton.FastJson.JsonSerializationParameters">
+  <Class Name="Denobrium.Json.JsonSerializationParameters">
     <Position X="4" Y="2.5" Width="2.5" />
     <Members>
       <Field Name="_includeReadOnly" Hidden="true" />

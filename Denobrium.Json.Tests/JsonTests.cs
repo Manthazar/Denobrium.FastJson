@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Apolyton.FastJson.Tests.Helpers;
-using Apolyton.FastJson.TestsHelpers.StandardTypes;
-using Apolyton.FastJson;
-using Apolyton.FastJson.Data;
+using Denobrium.Json.Tests.Helpers;
+using Denobrium.Json.TestsHelpers.StandardTypes;
+using Denobrium.Json;
+using Denobrium.Json.Data;
 using System.Collections.Generic;
 
-namespace Apolyton.FastJson.Tests
+namespace Denobrium.Json.Tests
 {
     [TestClass]
     public class JsonTests

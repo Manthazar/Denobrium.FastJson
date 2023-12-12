@@ -5,7 +5,7 @@ using System.Text;
 using System.Reflection;
 using System.Runtime.Serialization;
 
-namespace Apolyton.FastJson.Registry
+namespace Denobrium.Json.Registry
 {
     /// <summary>
     /// Represents a class which describes a type by some unique naming methodology.

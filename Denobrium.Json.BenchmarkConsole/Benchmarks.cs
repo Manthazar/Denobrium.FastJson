@@ -1,4 +1,4 @@
-﻿using Apolyton.FastJson.Benchmarks;
+﻿using Denobrium.Json.Benchmarks;
 using consoletest.DataObjects;
 using System;
 using System.Collections;

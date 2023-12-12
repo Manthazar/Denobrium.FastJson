@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Apolyton.FastJson.Tests.Helpers.StandardTypes
+namespace Denobrium.Json.Tests.Helpers.StandardTypes
 {
     public class HashSetClass
     {

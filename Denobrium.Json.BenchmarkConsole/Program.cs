@@ -10,7 +10,7 @@ namespace consoletest
         /// <param name="args"></param>
         public static void Main(string[] args)
         {
-            Console.WriteLine("Apolyton.FastJson indicative benchmark tool.");
+            Console.WriteLine("Denobrium.Json indicative benchmark tool.");
 
             Console.WriteLine("ENVIRONMENT");
             Console.WriteLine(".net version = " + Environment.Version);

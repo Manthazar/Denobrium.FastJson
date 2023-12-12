@@ -1,7 +1,7 @@
 ﻿using System;
-using Apolyton.FastJson.Registry;
+using Denobrium.Json.Registry;
 
-namespace Apolyton.FastJson.Registry
+namespace Denobrium.Json.Registry
 {
     /// <summary>
     /// Represents the internal property info.

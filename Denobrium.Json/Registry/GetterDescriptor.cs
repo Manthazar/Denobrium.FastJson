@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Apolyton.FastJson.Registry
+namespace Denobrium.Json.Registry
 {
     /// <summary>
     /// Represents brief information about the get aspect of a property or a field. Contains a fast getter handler which can be used to read the values.

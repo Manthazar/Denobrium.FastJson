@@ -5,7 +5,7 @@ using System.Text;
 using System.Runtime.Serialization;
 using System.Collections;
 
-namespace Apolyton.FastJson.TestsHelpers.StandardTypes
+namespace Denobrium.Json.TestsHelpers.StandardTypes
 {
     [DataContract]
     public class ByteArrayClass

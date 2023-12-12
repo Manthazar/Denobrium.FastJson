@@ -1,8 +1,8 @@
 ﻿using System;
-using Apolyton.FastJson.Serialization;
-using Apolyton.FastJson.Tests.Helpers.ParameterRelated;
+using Denobrium.Json.Serialization;
+using Denobrium.Json.Tests.Helpers.ParameterRelated;
 
-namespace Apolyton.FastJson.Tests.Helpers
+namespace Denobrium.Json.Tests.Helpers
 {
     internal class CustomTypeSerializerFake : ICustomTypeSerializer
     {

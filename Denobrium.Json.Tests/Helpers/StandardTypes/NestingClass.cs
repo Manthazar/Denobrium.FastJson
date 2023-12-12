@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Apolyton.FastJson.Tests.Helpers;
+using Denobrium.Json.Tests.Helpers;
 using System.Runtime.Serialization;
 
-namespace Apolyton.FastJson.Tests.Helpers.StandardTypes
+namespace Denobrium.Json.Tests.Helpers.StandardTypes
 {
     public class NestingClass
     {

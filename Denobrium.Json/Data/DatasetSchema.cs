@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Apolyton.FastJson.Data
+namespace Denobrium.Json.Data
 {
     /// <summary>
     /// Represents a data model for a data set.

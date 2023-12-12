@@ -1,9 +1,9 @@
 ﻿using System;
-using Apolyton.FastJson.Data;
-using Apolyton.FastJson.Tests.Helpers.ParameterRelated;
+using Denobrium.Json.Data;
+using Denobrium.Json.Tests.Helpers.ParameterRelated;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Apolyton.FastJson.Tests.Data
+namespace Denobrium.Json.Tests.Data
 {
     [TestClass]
     public class JsonPrimitiveTests

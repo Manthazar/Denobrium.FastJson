@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Apolyton.FastJson.Common;
-using Apolyton.FastJson.Data;
-using Apolyton.FastJson.Registry;
-using Apolyton.FastJson.Serialization;
+using Denobrium.Json.Common;
+using Denobrium.Json.Data;
+using Denobrium.Json.Registry;
+using Denobrium.Json.Serialization;
 
 #if DESKTOP 
 using System.Data;
 #endif 
 
-namespace Apolyton.FastJson
+namespace Denobrium.Json
 {
     /// <summary>
     /// Entry point for json related operations. 

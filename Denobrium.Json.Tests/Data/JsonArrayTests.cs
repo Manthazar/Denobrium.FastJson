@@ -3,9 +3,9 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Apolyton.FastJson.Data;
+using Denobrium.Json.Data;
 
-namespace Apolyton.FastJson.Tests.Data
+namespace Denobrium.Json.Tests.Data
 {
     [TestClass]
     public class JsonArrayTests

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Apolyton.FastJson.Tests.Helpers.Polymorphism
+namespace Denobrium.Json.Tests.Helpers.Polymorphism
 {
     public class Zoo
     {

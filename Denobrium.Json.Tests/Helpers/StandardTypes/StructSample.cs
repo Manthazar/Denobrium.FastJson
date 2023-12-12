@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Apolyton.FastJson.Tests.Helpers
+namespace Denobrium.Json.Tests.Helpers
 {
     public struct StructSample
     {
