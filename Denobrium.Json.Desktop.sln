@@ -10,11 +10,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apolyton.FastJson", "Apolyton.FastJson\Apolyton.FastJson.csproj", "{A1265491-7E30-4196-9842-4A7944C18F0D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Denobrium.Json", "Denobrium.Json\Denobrium.Json.csproj", "{A1265491-7E30-4196-9842-4A7944C18F0D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apolyton.FastJson.Tests", "Apolyton.FastJson.Tests\Apolyton.FastJson.Tests.csproj", "{85B3F98D-21A3-47AA-8AAB-55E8DB72F32F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Denobrium.Json.Tests", "Denobrium.Json.Tests\Denobrium.Json.Tests.csproj", "{85B3F98D-21A3-47AA-8AAB-55E8DB72F32F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apolyton.FastJson.BenchmarkConsole", "Console Test\Apolyton.FastJson.BenchmarkConsole.csproj", "{6BADD8B3-618E-412A-BBCA-8420EFD5B62E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Denobrium.Json.BenchmarkConsole", "Denobrium.Json.BenchmarkConsole\Denobrium.Json.BenchmarkConsole.csproj", "{6BADD8B3-618E-412A-BBCA-8420EFD5B62E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

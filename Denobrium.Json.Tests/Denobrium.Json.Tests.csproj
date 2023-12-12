@@ -9,8 +9,8 @@
     <ProjectGuid>{85B3F98D-21A3-47AA-8AAB-55E8DB72F32F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Apolyton.FastJson.Tests</RootNamespace>
-    <AssemblyName>Apolyton.FastJSON.Tests</AssemblyName>
+    <RootNamespace>Denobrium.Json.Tests</RootNamespace>
+    <AssemblyName>Denobrium.Json.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -108,9 +108,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Apolyton.FastJson\Apolyton.FastJson.csproj">
+    <ProjectReference Include="..\Denobrium.Json\Denobrium.Json.csproj">
       <Project>{A1265491-7E30-4196-9842-4A7944C18F0D}</Project>
-      <Name>Apolyton.FastJson</Name>
+      <Name>Denobrium.Json</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

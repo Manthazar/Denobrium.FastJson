@@ -5,8 +5,8 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <OutputType>Exe</OutputType>
-    <RootNamespace>consoletest</RootNamespace>
-    <AssemblyName>consoletest</AssemblyName>
+    <RootNamespace>Denobrium.Json.Console</RootNamespace>
+    <AssemblyName>Denobrium.Json.Console</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
@@ -141,9 +141,9 @@
     <Compile Include="Benchmarks.Others.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Apolyton.FastJson\Apolyton.FastJson.csproj">
+    <ProjectReference Include="..\Denobrium.Json\Denobrium.Json.csproj">
       <Project>{A1265491-7E30-4196-9842-4A7944C18F0D}</Project>
-      <Name>Apolyton.FastJson</Name>
+      <Name>Denobrium.Json</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
