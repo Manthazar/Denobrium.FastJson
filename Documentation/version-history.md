@@ -70,9 +70,8 @@ Benchmark
 - Fixing time measure flaw in benchmark tool.      
 
 # History    
-28th August 2013: Release of v1.0 (after long testing period).
-
-30th January 2013: Release of v0.93
-4th January 2013: Release of v.92
-26th November 2012: Release of v.90
-25th October 2012: Fork of FastJSON. Development started.
+- 28th August 2013: Release of v1.0 (after long testing period).
+- 30th January 2013: Release of v0.93
+- 4th January 2013: Release of v.92
+- 26th November 2012: Release of v.90
+- 25th October 2012: Fork of FastJSON. Development started.
