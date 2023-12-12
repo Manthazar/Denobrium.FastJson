@@ -131,11 +131,11 @@
     <Compile Include="Workers\DenobriumJsonBenchmarks.cs" />
     <Compile Include="Workers\Worker.cs" />
     <Compile Include="Workers\NewtonsoftBenchmarks.cs" />
-    <Compile Include="DataObjects\BaseClass.cs" />
-    <Compile Include="DataObjects\Class1.cs" />
-    <Compile Include="DataObjects\Class2.cs" />
+    <Compile Include="DataObjects\Product.cs" />
+    <Compile Include="DataObjects\Knife.cs" />
+    <Compile Include="DataObjects\Spoon.cs" />
     <Compile Include="DataObjects\BenchmarkDataClass.cs" />
-    <Compile Include="DataObjects\Gender.cs" />
+    <Compile Include="DataObjects\ProductTypes.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>

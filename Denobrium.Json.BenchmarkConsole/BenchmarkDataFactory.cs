@@ -12,8 +12,6 @@ namespace Denobrium.Json.Benchmark
         {
             var result = new BenchmarkDataClass()
             {
-
-                ItemList = new List<BaseClass>(),
                 DateValue = DateTime.Now,
                 MultilineString = @"
             AJKLjaskljLA
@@ -24,53 +22,56 @@ namespace Denobrium.Json.Benchmark
             ",
                 BooleanValue = true,
                 DoubleValue = 0.001,
-                EnumValue = Gender.Female,
+                EnumValue = ProductTypes.Fork,
                 IntArray = new int[5] { 1, 2, 3, 4, 5 },
 
                 DecimalValue = 3,
+                SimpleString = "" + DateTime.Now,
+                NullableDouble = 100.003,
+                NullableDecimal = 3.14M,
+                NullableGuid = Guid.NewGuid()
             };
 
             if (BenchmarkOptions.Current.IncludeComplexTypes)
             {
-                result.NullableGuid = Guid.NewGuid();
                 result.HashTableValue = new Hashtable();
                 result.BytesValue = new byte[1024];
-                result.StringDictionary = new Dictionary<string, BaseClass>();
-                result.ObjectDictionary = new Dictionary<BaseClass, BaseClass>();
-                result.IntDictionary = new Dictionary<int, BaseClass>();
-                result.NullableDouble = 100.003;
+                result.SpoonMap = new Dictionary<string, Spoon>();
+                result.ProductMap = new Dictionary<string, Product>();
+                result.ProductList = new List<Product>();
 
                 if (BenchmarkOptions.Current.IncludeDataSet)
                 {
                     result.DataSet = CreateDataset();
                 }
 
-                result.NullableDecimal = 3.14M;
+                result.SpoonList = new List<Spoon>() {
+                        new Spoon ("Silver", "S1", 50),
+                        new Spoon ("Gold", "G1", 30),
+                        new Spoon("Platinum", "P1",40)
+                };
 
-                result.HashTableValue.Add(new Class1("0", "hello", Guid.NewGuid()), new Class2("1", "code", "desc"));
-                result.HashTableValue.Add(new Class2("0", "hello", "pppp"), new Class1("1", "code", Guid.NewGuid()));
+                result.HashTableValue.Add(new Knife("0", "hello", 5), new Spoon("1", "code", 54));
+                result.HashTableValue.Add(new Spoon("0", "hello", 40), new Knife("1", "code", 6));
 
-                result.StringDictionary.Add("name1", new Class2("1", "code", "desc"));
-                result.StringDictionary.Add("name2", new Class1("1", "code", Guid.NewGuid()));
+                result.SpoonMap.Add("name1", new Spoon("1", "code1", 50));
+                result.SpoonMap.Add("name2", new Spoon("2", "code2", 61));
 
-                result.IntDictionary.Add(1, new Class2("1", "code", "desc"));
-                result.IntDictionary.Add(2, new Class1("1", "code", Guid.NewGuid()));
+                result.ProductMap.Add("P1", new Knife("0", "knife0", 7));
+                result.ProductMap.Add("P2", new Spoon("1", "spoon1", 46));
+                result.ProductMap.Add("P3", new Spoon("2", "spoon2", 40));
+                result.ProductMap.Add("P4", new Knife("3", "knife3", 9));
 
-                result.ObjectDictionary.Add(new Class1("0", "hello", Guid.NewGuid()), new Class2("1", "code", "desc"));
-                result.ObjectDictionary.Add(new Class2("0", "hello", "pppp"), new Class1("1", "code", Guid.NewGuid()));
+                result.KnifeArray = new Knife[2];
+                result.KnifeArray[0] = new Knife() { Code = "C1", LevelOfSharpness = 10, Name = "K1" };
+                result.KnifeArray[0] = new Knife() { Code = "C2", LevelOfSharpness = 10, Name = "K2" };
+                result.KnifeArray[0] = new Knife() { Code = "C3", LevelOfSharpness = 10, Name = "K3" };
 
-                result.ComplexTypeArray = new BaseClass[2];
-                result.ComplexTypeArray[0] = new Class1();
-                result.ComplexTypeArray[1] = new Class2();
+                result.ProductList.Add(new Knife("1", "1", 9));
+                result.ProductList.Add(new Spoon("2", "2", 34));
+                result.ProductList.Add(new Knife("3", "3", 8));
+                result.ProductList.Add(new Spoon("4", "4", 54));
             }
-
-
-            result.ItemList.Add(new Class1("1", "1", Guid.NewGuid()));
-            result.ItemList.Add(new Class2("2", "2", "desc1"));
-            result.ItemList.Add(new Class1("3", "3", Guid.NewGuid()));
-            result.ItemList.Add(new Class2("4", "4", "desc2"));
-
-            result.SimpleString = "" + DateTime.Now;
 
             return result;
         }

@@ -56,6 +56,12 @@ namespace Denobrium.Json
 
         /// <summary>
         /// Registers the given type descriptor which handles the type-name / type relationship.
+        /// Examples:
+        /// <para>
+        /// Example type descriptors are:
+        /// - <seealso cref="DataContractTypeDescriptor"/>
+        /// - <seealso cref="JsonTypeDescriptor"/>
+        /// </para>
         /// </summary>
         public void RegisterTypeDescriptor(JsonTypeDescriptor descriptor)
         {

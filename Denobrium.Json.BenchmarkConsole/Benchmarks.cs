@@ -1,9 +1,5 @@
 ﻿using Denobrium.Json.Benchmark.Workers;
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
 
 namespace Denobrium.Json.Benchmark
 {
@@ -17,17 +13,17 @@ namespace Denobrium.Json.Benchmark
             Console.WriteLine("==== SERIALIZATION   ====");
             new DenobriumJsonBenchmarks.Serialize().Work();
 
-            new NewtonsoftBenchmarks.Serialize().Work();
-            new BinaryFormatterBenchmarks.Serialize().Work();
+            new NewtonsoftBenchmarks.Serialize().Work(); 
+            //new BinaryFormatterBenchmarks.Serialize().Work();
 
             Console.WriteLine("\n\n");
             Console.WriteLine("==== DESERIALIZATION ====");
             new DenobriumJsonBenchmarks.Deserialize_Into_DataClass().Work();
-            new DenobriumJsonBenchmarks.Deserialize_Into_JsonValue().Work();
-            new DenobriumJsonBenchmarks.Deserialize_BuildUp().Work();
+            //new DenobriumJsonBenchmarks.Deserialize_Into_JsonValue().Work();
+            //new DenobriumJsonBenchmarks.Deserialize_BuildUp().Work();
 
             new NewtonsoftBenchmarks.Deserialize_Into_DataClass().Work();
-            new BinaryFormatterBenchmarks.Deserialize_Into_DataClass().Work();
+            //new BinaryFormatterBenchmarks.Deserialize_Into_DataClass().Work();
 
             //ApolytonFastJsonBenchmarks.Deserialize_JsonObject_BuildUp_NoTypeExtension();
             //ApolytonFastJsonBenchmarks.Deserialize_JsonObject_BuildUp_DataContractTypeExtension();

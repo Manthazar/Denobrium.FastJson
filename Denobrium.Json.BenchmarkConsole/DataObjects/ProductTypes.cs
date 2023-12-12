@@ -3,11 +3,12 @@ using System.Runtime.Serialization;
 
 namespace Denobrium.Json.Benchmark.DataObjects
 {
-    [DataContract(Name = "Gender")]
+    [DataContract(Name = "ProductTypes")]
     [Serializable]
-    public enum Gender
+    public enum ProductTypes
     {
-        Male,
-        Female
+        Knife,
+        Fork,
+        Spoon
     }
 }

@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Reflection;
 using System.Runtime.Serialization;
 
 namespace Denobrium.Json.Registry
 {
     /// <summary>
-    /// Represents a class which describes a type by some unique naming methodology.
+    /// Represents a class which describes a type in json using the qualified assembly name.
+    /// <seealso cref="DataContractTypeDescriptor"/>
     /// </summary>
     public class JsonTypeDescriptor
     {

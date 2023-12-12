@@ -16,9 +16,9 @@ namespace Denobrium.Json.Benchmark
             Console.WriteLine(".net version = " + Environment.Version);
 
             Console.WriteLine("OPTIONS");
-            Console.WriteLine("Include exotic types?: (E)");
+            Console.WriteLine("Include complex types?: (c)");
 
-            if (Console.ReadKey().Key == ConsoleKey.E)
+            if (Console.ReadKey().Key == ConsoleKey.C)
             {
                 BenchmarkOptions.Current.IncludeComplexTypes = true;
             }
