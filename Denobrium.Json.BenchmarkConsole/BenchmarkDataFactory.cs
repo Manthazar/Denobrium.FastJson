@@ -10,52 +10,67 @@ namespace Denobrium.Json.Benchmark
     {
         internal static BenchmarkDataClass CreateDefaultDataClass()
         {
-            var result = new BenchmarkDataClass();
-
-            result.booleanValue = true;
-            result.ordinaryDecimal = 3;
-
-            if (BenchmarkOptions.Current.IncludeExotic)
+            var result = new BenchmarkDataClass()
             {
-                result.nullableGuid = Guid.NewGuid();
-                result.hash = new Hashtable();
-                result.bytes = new byte[1024];
-                result.stringDictionary = new Dictionary<string, BaseClass>();
-                result.objectDictionary = new Dictionary<BaseClass, BaseClass>();
-                result.intDictionary = new Dictionary<int, BaseClass>();
-                result.nullableDouble = 100.003;
+
+                ItemList = new List<BaseClass>(),
+                DateValue = DateTime.Now,
+                MultilineString = @"
+            AJKLjaskljLA
+       ahjksjkAHJKS سلام فارسی
+       AJKHSKJhaksjhAHSJKa
+       AJKSHajkhsjkHKSJKash
+       ASJKhasjkKASJKahsjk
+            ",
+                BooleanValue = true,
+                DoubleValue = 0.001,
+                EnumValue = Gender.Female,
+                IntArray = new int[5] { 1, 2, 3, 4, 5 },
+
+                DecimalValue = 3,
+            };
+
+            if (BenchmarkOptions.Current.IncludeComplexTypes)
+            {
+                result.NullableGuid = Guid.NewGuid();
+                result.HashTableValue = new Hashtable();
+                result.BytesValue = new byte[1024];
+                result.StringDictionary = new Dictionary<string, BaseClass>();
+                result.ObjectDictionary = new Dictionary<BaseClass, BaseClass>();
+                result.IntDictionary = new Dictionary<int, BaseClass>();
+                result.NullableDouble = 100.003;
 
                 if (BenchmarkOptions.Current.IncludeDataSet)
                 {
-                    result.dataset = CreateDataset();
+                    result.DataSet = CreateDataset();
                 }
 
-                result.nullableDecimal = 3.14M;
+                result.NullableDecimal = 3.14M;
 
-                result.hash.Add(new Class1("0", "hello", Guid.NewGuid()), new Class2("1", "code", "desc"));
-                result.hash.Add(new Class2("0", "hello", "pppp"), new Class1("1", "code", Guid.NewGuid()));
+                result.HashTableValue.Add(new Class1("0", "hello", Guid.NewGuid()), new Class2("1", "code", "desc"));
+                result.HashTableValue.Add(new Class2("0", "hello", "pppp"), new Class1("1", "code", Guid.NewGuid()));
 
-                result.stringDictionary.Add("name1", new Class2("1", "code", "desc"));
-                result.stringDictionary.Add("name2", new Class1("1", "code", Guid.NewGuid()));
+                result.StringDictionary.Add("name1", new Class2("1", "code", "desc"));
+                result.StringDictionary.Add("name2", new Class1("1", "code", Guid.NewGuid()));
 
-                result.intDictionary.Add(1, new Class2("1", "code", "desc"));
-                result.intDictionary.Add(2, new Class1("1", "code", Guid.NewGuid()));
+                result.IntDictionary.Add(1, new Class2("1", "code", "desc"));
+                result.IntDictionary.Add(2, new Class1("1", "code", Guid.NewGuid()));
 
-                result.objectDictionary.Add(new Class1("0", "hello", Guid.NewGuid()), new Class2("1", "code", "desc"));
-                result.objectDictionary.Add(new Class2("0", "hello", "pppp"), new Class1("1", "code", Guid.NewGuid()));
+                result.ObjectDictionary.Add(new Class1("0", "hello", Guid.NewGuid()), new Class2("1", "code", "desc"));
+                result.ObjectDictionary.Add(new Class2("0", "hello", "pppp"), new Class1("1", "code", Guid.NewGuid()));
 
-                result.arrayType = new BaseClass[2];
-                result.arrayType[0] = new Class1();
-                result.arrayType[1] = new Class2();
+                result.ComplexTypeArray = new BaseClass[2];
+                result.ComplexTypeArray[0] = new Class1();
+                result.ComplexTypeArray[1] = new Class2();
             }
 
 
-            result.items.Add(new Class1("1", "1", Guid.NewGuid()));
-            result.items.Add(new Class2("2", "2", "desc1"));
-            result.items.Add(new Class1("3", "3", Guid.NewGuid()));
-            result.items.Add(new Class2("4", "4", "desc2"));
+            result.ItemList.Add(new Class1("1", "1", Guid.NewGuid()));
+            result.ItemList.Add(new Class2("2", "2", "desc1"));
+            result.ItemList.Add(new Class1("3", "3", Guid.NewGuid()));
+            result.ItemList.Add(new Class2("4", "4", "desc2"));
 
-            result.laststring = "" + DateTime.Now;
+            result.SimpleString = "" + DateTime.Now;
 
             return result;
         }

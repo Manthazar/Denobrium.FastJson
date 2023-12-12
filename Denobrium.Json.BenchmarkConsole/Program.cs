@@ -20,7 +20,7 @@ namespace Denobrium.Json.Benchmark
 
             if (Console.ReadKey().Key == ConsoleKey.E)
             {
-                BenchmarkOptions.Current.IncludeExotic = true;
+                BenchmarkOptions.Current.IncludeComplexTypes = true;
             }
 
             Benchmarks.Run();

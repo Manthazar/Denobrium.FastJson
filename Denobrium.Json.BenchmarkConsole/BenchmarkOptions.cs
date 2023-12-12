@@ -10,7 +10,7 @@ namespace Denobrium.Json.Benchmark
 
         internal bool IncludeDataSet { get; set; } = false;
 
-        internal bool IncludeExotic { get; set; } = false;
+        internal bool IncludeComplexTypes { get; set; } = false;
 
         private static readonly Lazy<BenchmarkOptions> current = new Lazy<BenchmarkOptions>(isThreadSafe:true);
 

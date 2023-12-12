@@ -12,42 +12,49 @@ namespace Denobrium.Json.Benchmark.DataObjects
     {
         public BenchmarkDataClass()
         {
-            items = new List<BaseClass>();
-            date = DateTime.Now;
-            multilineString = @"
-            AJKLjaskljLA
-       ahjksjkAHJKS سلام فارسی
-       AJKHSKJhaksjhAHSJKa
-       AJKSHajkhsjkHKSJKash
-       ASJKhasjkKASJKahsjk
-            ";
-            isNew = true;
-            booleanValue = true;
-            ordinaryDouble = 0.001;
-            gender = Gender.Female;
-            intarray = new int[5] { 1, 2, 3, 4, 5 };
         }
 
-        public bool booleanValue { get; set; }
-        public DateTime date { get; set; }
-        public string multilineString { get; set; }
-        public List<BaseClass> items { get; set; }
-        public decimal ordinaryDecimal { get; set; }
-        public double ordinaryDouble { get; set; }
-        public bool isNew { get; set; }
-        public string laststring { get; set; }
-        public Gender gender { get; set; }
+        #region simple types
 
-        public DataSet dataset { get; set; }
-        public Dictionary<string, BaseClass> stringDictionary { get; set; }
-        public Dictionary<BaseClass, BaseClass> objectDictionary { get; set; }
-        public Dictionary<int, BaseClass> intDictionary { get; set; }
-        public Guid? nullableGuid { get; set; }
-        public decimal? nullableDecimal { get; set; }
-        public double? nullableDouble { get; set; }
-        public Hashtable hash { get; set; }
-        public BaseClass[] arrayType { get; set; }
-        public byte[] bytes { get; set; }
-        public int[] intarray { get; set; }
+        public bool BooleanValue { get; set; }
+        public DateTime DateValue { get; set; }
+
+        public Guid Guid { get; set; }
+
+        public decimal DecimalValue { get; set; }
+        public double DoubleValue { get; set; }
+
+        public Guid? NullableGuid { get; set; }
+
+        public DateTime? NullableDateTime{ get; set; }
+
+        public decimal? NullableDecimal { get; set; }
+        public double? NullableDouble { get; set; }
+
+        public string MultilineString { get; set; }
+
+        public string SimpleString { get; set; }
+
+        #endregion
+
+        #region complex types
+
+        public List<BaseClass> ItemList { get; set; }
+
+        #endregion
+
+        public Gender EnumValue { get; set; }
+        public DataSet DataSet { get; set; }
+
+        public Dictionary<string, BaseClass> StringDictionary { get; set; }
+        public Dictionary<BaseClass, BaseClass> ObjectDictionary { get; set; }
+        public Dictionary<int, BaseClass> IntDictionary { get; set; }
+
+        
+        public Hashtable HashTableValue { get; set; }
+        public BaseClass[] ComplexTypeArray { get; set; }
+
+        public byte[] BytesValue { get; set; }
+        public int[] IntArray { get; set; }
     }
 }
