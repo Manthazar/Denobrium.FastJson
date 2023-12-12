@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Runtime.Serialization;
 
 namespace Denobrium.Json.Benchmark.DataObjects
 {
     [DataContract(Name = "Knife")]
+    [JsonObject(MemberSerialization.OptOut)]
     [Serializable]
     public class Knife : Product
     {
