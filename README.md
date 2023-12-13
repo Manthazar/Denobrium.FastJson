@@ -1,36 +1,24 @@
 # Background
 A compact json serializer which works on ancient platforms. This is a port of the [CodeProject APJSON](https://www.codeproject.com/articles/491742/apjson) (as of 2013). 
 The `json` toolkit had 3 objective: 
-- streamlined behavior on all relevant platforms (such as .net framework and silverlight)
+- streamlined behavior on all relevant platforms (such as .net framework and Silverlight)
 - extensibility towards advanced data storages such as MongoDB
 - performant implementation (as it was envisioned that clients may be low power)
-  
-The code-base though is not maintained any longer so this repository is made available for educational/ exploratory purposes -and for the same reason, no NUGET package is fabricated out of it.
+
+> [!CAUTION]
+> The code-base though is not maintained any longer so this repository is made available for educational/ exploratory purposes only -and for the same reason, no NUGET package is fabricated out of it.
 
 # Introduction
-This is an alternative version of Gholam's great JSON library which brings a new deserializer, code and workflow optimizations and some new features at acceptable performance cost (if). 
+As of 2013, this was an alternative version of Gholam's great JSON library which brings a new deserializer, code and workflow optimizations and some new features at acceptable performance cost (if). 
 
-# Key Features (v1.0)
-- Event faster deserialization of a json string into generic values (IJsonValue)
-- Type extension support (custom type names) 
+# Key Features
+- 2 Step deserialization: 1 into a readable dictionary (useful for quick insights) + 1 build up method to actually fabricate the desired object
+- Type extension support (custom type names), support for polymorphism
 - Custom type support (custom (de-)serializers) 
-- Silverlight 5 support
-- Optionally checks for DataMember attribute.
-- Handles DataMember.Name representing the json field name  
-- Handles IgnoreDataMember by ignoring properties decorated with it. 
-- Handles date time kind through the JsonDateTimeOptions attribute.
+- Silverlight 5 support (removed meanwhile)
+- Embraces DataContract/ DataMember attributes.
 - Handles custom date formats through the JsonDateTimeOptions attribute.
-- [New] Supports HashSet<T> (with some performance penalty)
-- [New] Json.Current.BuildUp supports now JsonArray into collection types.
- 
-- (Most) built-in value types are supported.   
-- Non-abstract reference types are supported (including inheritance) 
-- Custom type support.  
-- Enhanced debugging capabilities purposes see the GetSerializationMembers method
 - Committed to quality over performance. 
-
-==> See changelog at the bottom of this article.
-==> See fastJSON 2.0.9 feature list for more complete list of features. 
 
 # Using the Code
 Since ApJson is built on top of fastJSON, therefore it's API has some overlap: 
@@ -231,41 +219,9 @@ InvalidProgramException is thrown when property indexer (aka `this[]`) is define
 - `UseGlobalTypes` doesn't work with `JsonValueDeserializer`. 
 
 # Benchmarks
-Before crunching some numbers, some points should be enlightened since they are easily forgotten:
+The benchmarks are the key reason, why this project should not be used any longer. There are better maintained competitors, such as
+- System.Text.Json: great performance, but the lack of polymorph object support (this can be a deal breaker)
+- Newtonsoft.Json: comparable performance, nothing really against it.
 
-- All benchmarks published here are from framework developers. You can expect _optimized results_. Real life results can look very differently. This is not bad intention, but perfectly normal. Therefore:
-- All results published here just performance indicators. You should compare the framework's performance in your end-to-end scenario while considering that: 
-Performance varies not only from run-to-run, but also from class-to-class and the data in it. 
-- All benchmarks are run against fastJSON 2.0.13 which was the reference at publish time.
-- When reading benchmark results ensure that input and output are the same (*1)
-
-_(*1) For instance, the fastJSON benchmark compares with BinaryFormatter which takes a stream as input. fastJSON cannot process streams. This aspect is ignored, but it leads to a potentially wrong assumption that fastJSON is faster than BinaryFormatter.. _
-
-## Scenario 1: A-FastJSON vs fastJSON x86 (custom types) 
-- (A)-FastJSON serialization is usually 20% faster than fastJSON.  
-- (A1)-FastJSON deserialization to IJsonValue is faster than serialization and ~300% faster fastJSON. 
-- (A2)-FastJSON deserialization to IJsonValue, then build up of into given class is almost ~20% faster than fastJSON (+10% compared to v0.91) 
-- (A3)-FastJSON deserializatio9n  to IJsonValue, then build up of into given class with type extensions, custom type name (Data Contract support) is ~9% faster than FastJson. 
-- (A4)-FastJSON deserialization into object is ~10% faster or equal to fastJSON
-- (A5)-FastJSON deserialization into a known object is ~20% faster than fastJSON (ReadObject<T>)
-
-## Scenario 2: A-FastJSON vs fastJSON x86 (custom types & exotic types)  
-- (A)-FastJSON serialization is usually 15% faster than fastJSON.  
-- (A1)-FastJSON deserialization to IJsonValue is faster than serialization and ~300% faster fastJSON. 
-- (A2)-FastJSON deserialization to IJsonValue, then build up of into given class is almost ~20% faster than fastJSON (+10% compared to v0.91)  
-- (A3)-FastJSON deserializatio9n  to IJsonValue, then build up of into given class with type extensions, custom type name (Data Contract support) is slower than FastJson. 
-- (A4)-FastJSON deserialization into object is ~19% faster or equal to fastJSON
-- (A5)-FastJSON deserialization into a known object is ~15% faster than fastJSON (ReadObject<T>)
-
-_Note that 64 Bit scenarios are not listed anymore since they don't reveal surprising measures (and are therefore not meaningful).  _
-
-## Conclusions
-- Both, ApJson and fastJSON are reasonably fast.   
-- In 64 bit scenarios the advantage of ApJson is lower.
-- If one needs built in data set/ data table support, fastJSON is likely the better option.  
-- If one needs exotic type support (dictionaries, hash-sets etc), ApJson is likely the better option. 
-- The IJsonValue conversion is surprisingly fast and seems to be a very good option -especially, if one considers that the second step, converting the generic dictionary into a given type, is optional. 
-- Due to code optimizations, ApJson is meanwhile faster than FastJson in most of the scenarios it defines.
-
-# Version History:
-The version history can be lookup up [here](Documentation/version-history.md)
+# Version History
+The version history can be looked up [here](Documentation/version-history.md)
