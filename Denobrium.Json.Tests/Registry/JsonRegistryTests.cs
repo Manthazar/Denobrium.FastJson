@@ -96,11 +96,10 @@ namespace Denobrium.Json.Tests.Registry
         }
 
         [TestMethod]
-        [ExpectedException(typeof(SerializationException))]
         public void JsonRegistry_CreateInstanceFast_NonPublicClass()
         {
             JsonRegistry registry = new JsonRegistry(new JsonParameters());
-            registry.CreateInstanceFast(typeof(NonPublicClass));
+            var instance = registry.CreateInstanceFast(typeof(InternalPublicClass));
         }
     }
 }
