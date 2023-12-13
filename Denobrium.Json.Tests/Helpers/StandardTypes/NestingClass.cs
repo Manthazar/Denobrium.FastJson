@@ -17,7 +17,7 @@ namespace Denobrium.Json.Tests.Helpers.StandardTypes
         }
 
         [DataMember]
-        public NestedClass NestedClass
+        public NestedClass? NestedClass
         {
             get;
             set;

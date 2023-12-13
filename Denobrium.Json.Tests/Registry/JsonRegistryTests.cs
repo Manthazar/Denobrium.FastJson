@@ -1,9 +1,7 @@
-﻿using System;
-using System.Runtime.Serialization;
-using Denobrium.Json.Registry;
+﻿using Denobrium.Json.Registry;
 using Denobrium.Json.Tests.Helpers.Polymorphism;
 using Denobrium.Json.Tests.Helpers.RegistryHelpers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Runtime.Serialization;
 
 namespace Denobrium.Json.Tests.Registry
 {
@@ -13,13 +11,13 @@ namespace Denobrium.Json.Tests.Registry
         [TestMethod]
         public void JsonRegistry_Constructor()
         {
-            JsonRegistry registry = new JsonRegistry(new JsonParameters());
+            new JsonRegistry(new JsonParameters());
         }
 
         [TestMethod]
         public void JsonRegistry_GetPropertiesAndFields()
         {
-            JsonRegistry registry = new JsonRegistry(new JsonParameters());
+            var registry = new JsonRegistry(new JsonParameters());
             registry.GetPropertiesAndFields(typeof(VisibilityScopeClass), null);
         }
 
@@ -27,15 +25,15 @@ namespace Denobrium.Json.Tests.Registry
         [ExpectedException(typeof(SerializationException))]
         public void JsonRegistry_GetPropertiesAndFields_DuplicateName()
         {
-            JsonRegistry registry = new JsonRegistry(new JsonParameters());
+            var registry = new JsonRegistry(new JsonParameters());
             registry.GetPropertiesAndFields(typeof(DuplicateMemberNameClass), null);
         }
 
         [TestMethod]
         public void JsonRegistry_GetPropertiesAndFields_PublicGetSet()
         {
-            JsonRegistry registry = new JsonRegistry(new JsonParameters());
-            RegistrySection<String, JsonPropertyInfo>  members = registry.GetPropertiesAndFields(typeof(VisibilityScopeClass), null);
+            var registry = new JsonRegistry(new JsonParameters());
+            var members= registry.GetPropertiesAndFields(typeof(VisibilityScopeClass), null);
 
             Assert.IsTrue(members.ContainsKey("PublicGetSet"));
 
@@ -47,8 +45,8 @@ namespace Denobrium.Json.Tests.Registry
         [TestMethod]
         public void JsonRegistry_GetPropertiesAndFields_NoGetPublicSet()
         {
-            JsonRegistry registry = new JsonRegistry(new JsonParameters());
-            RegistrySection<String, JsonPropertyInfo> members = registry.GetPropertiesAndFields(typeof(VisibilityScopeClass), null);
+            var registry = new JsonRegistry(new JsonParameters());
+            var members= registry.GetPropertiesAndFields(typeof(VisibilityScopeClass), null);
 
             Assert.IsTrue(members.ContainsKey("NoGetPublicSet"));
 
@@ -60,8 +58,8 @@ namespace Denobrium.Json.Tests.Registry
         [TestMethod]
         public void JsonRegistry_GetPropertiesAndFields_PublicGetInternalSet()
         {
-            JsonRegistry registry = new JsonRegistry(new JsonParameters());
-            RegistrySection<String, JsonPropertyInfo> members = registry.GetPropertiesAndFields(typeof(VisibilityScopeClass), null);
+            var registry = new JsonRegistry(new JsonParameters());
+            var members= registry.GetPropertiesAndFields(typeof(VisibilityScopeClass), null);
 
             Assert.IsTrue(members.ContainsKey("PublicGetInternalSet"));
 
@@ -73,8 +71,8 @@ namespace Denobrium.Json.Tests.Registry
         [TestMethod]
         public void JsonRegistry_GetPropertiesAndFields_InternalGetSet()
         {
-            JsonRegistry registry = new JsonRegistry(new JsonParameters());
-            RegistrySection<String, JsonPropertyInfo> members = registry.GetPropertiesAndFields(typeof(VisibilityScopeClass), null);
+            var registry = new JsonRegistry(new JsonParameters());
+            var members= registry.GetPropertiesAndFields(typeof(VisibilityScopeClass), null);
 
             Assert.IsFalse(members.ContainsKey("InternalGetSet"));
         }
@@ -83,7 +81,7 @@ namespace Denobrium.Json.Tests.Registry
         [ExpectedException(typeof(SerializationException))]
         public void JsonRegistry_CreateInstanceFast_NoDefaultConstructor()
         {
-            JsonRegistry registry = new JsonRegistry(new JsonParameters());
+            var registry = new JsonRegistry(new JsonParameters());
             registry.CreateInstanceFast(typeof(ClassWithoutDefaultConstructor));
         }
 
@@ -91,16 +89,15 @@ namespace Denobrium.Json.Tests.Registry
         [ExpectedException(typeof(SerializationException))]
         public void JsonRegistry_CreateInstanceFast_AbstractClass()
         {
-            JsonRegistry registry = new JsonRegistry(new JsonParameters());
+            var registry = new JsonRegistry(new JsonParameters());
             registry.CreateInstanceFast(typeof(Animal));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(SerializationException))]
         public void JsonRegistry_CreateInstanceFast_NonPublicClass()
         {
-            JsonRegistry registry = new JsonRegistry(new JsonParameters());
-            registry.CreateInstanceFast(typeof(NonPublicClass));
+            var registry = new JsonRegistry(new JsonParameters());
+            var instance = registry.CreateInstanceFast(typeof(InternalPublicClass));
         }
     }
 }

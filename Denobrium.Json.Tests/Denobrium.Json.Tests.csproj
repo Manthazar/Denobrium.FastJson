@@ -1,125 +1,31 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>
-    </ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{85B3F98D-21A3-47AA-8AAB-55E8DB72F32F}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Denobrium.Json.Tests</RootNamespace>
-    <AssemblyName>Denobrium.Json.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <TargetFrameworkProfile />
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;</NoWarn>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
-    <Prefer32Bit>false</Prefer32Bit>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>1701;1702;</NoWarn>
   </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="System" />
-    <Reference Include="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Data" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.XML" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="3.0.4" />
+    <PackageReference Include="MSTest.TestFramework" Version="3.0.4" />
+    <PackageReference Include="coverlet.collector" Version="6.0.0" />
   </ItemGroup>
+
   <ItemGroup>
-    <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
-      <Visible>False</Visible>
-    </CodeAnalysisDependentAssemblyPaths>
+    <ProjectReference Include="..\Denobrium.Json\Denobrium.Json.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Helpers\Polymorphism\Animal.cs" />
-    <Compile Include="Helpers\ComplexTypes\ClassWithNoProperties.cs" />
-    <Compile Include="Helpers\ComplexTypes\CustomStruct.cs" />
-    <Compile Include="Helpers\CustomTypeSerializerFake.cs" />
-    <Compile Include="Helpers\ParameterRelated\CustomTypeClass.cs" />
-    <Compile Include="Helpers\Polymorphism\Cat.cs" />
-    <Compile Include="Helpers\Polymorphism\Dog.cs" />
-    <Compile Include="Helpers\Polymorphism\Zoo.cs" />
-    <Compile Include="Helpers\RegistryHelpers\AbstractClass.cs" />
-    <Compile Include="Helpers\RegistryHelpers\ClassWithoutDefaultConstructor.cs" />
-    <Compile Include="Helpers\RegistryHelpers\DuplicateMemberNameClass.cs" />
-    <Compile Include="Helpers\RegistryHelpers\NonPublicClass.cs" />
-    <Compile Include="Helpers\RegistryHelpers\VisibilityScopeClass.cs" />
-    <Compile Include="Helpers\StandardTypes\EnumClass.cs" />
-    <Compile Include="Data\JsonArrayTests.cs" />
-    <Compile Include="Data\JsonObjectTests.cs" />
-    <Compile Include="Data\JsonPrimitiveTests.cs" />
-    <Compile Include="Helpers\ComplexTypes\BaseClass.cs" />
-    <Compile Include="Helpers\ComplexTypes\ComplexClass.cs" />
-    <Compile Include="Helpers\ComplexTypes\Gender.cs" />
-    <Compile Include="Helpers\ComplexTypes\SubClass1.cs" />
-    <Compile Include="Helpers\ComplexTypes\SubClass2.cs" />
-    <Compile Include="Helpers\ParameterRelated\OptOutClass.cs" />
-    <Compile Include="Helpers\ParameterRelated\OptInClass.cs" />
-    <Compile Include="Helpers\ParameterRelated\ReadOnlyClass.cs" />
-    <Compile Include="Helpers\StandardTypes\EnumerableClass.cs" />
-    <Compile Include="Helpers\StandardTypes\BoolClass.cs" />
-    <Compile Include="Helpers\StandardTypes\ByteArrayClass.cs" />
-    <Compile Include="Helpers\StandardTypes\GuidClass.cs" />
-    <Compile Include="Helpers\StandardTypes\HashSetClass.cs" />
-    <Compile Include="Helpers\StandardTypes\NestingClass.cs" />
-    <Compile Include="Helpers\StandardTypes\StringClass.cs" />
-    <Compile Include="Helpers\StandardTypes\UnsignedShortClass.cs" />
-    <Compile Include="Helpers\StandardTypes\DateTimeClass.cs" />
-    <Compile Include="Helpers\StandardTypes\DictionaryClass.cs" />
-    <Compile Include="Helpers\StandardTypes\DoubleClass.cs" />
-    <Compile Include="Helpers\StandardTypes\IntClass.cs" />
-    <Compile Include="Helpers\StandardTypes\LongClass.cs" />
-    <Compile Include="Helpers\StandardTypes\NestedClass.cs" />
-    <Compile Include="Helpers\StandardTypes\ShortClass.cs" />
-    <Compile Include="Helpers\StandardTypes\StructSample.cs" />
-    <Compile Include="Helpers\StandardTypes\TimespanClass.cs" />
-    <Compile Include="Helpers\StandardTypes\UnsignedIntClas.cs" />
-    <Compile Include="Helpers\StandardTypes\UnsignedLongClass.cs" />
-    <Compile Include="Registry\DataContractTypeDescriptorTests.cs" />
-    <Compile Include="Registry\JsonParameterTests.cs" />
-    <Compile Include="Registry\JsonRegistryTests.cs" />
-    <Compile Include="Registry\JsonTypeDescriptorTests.cs" />
-    <Compile Include="Serialization\JsonHybridDeserializerTests.cs" />
-    <Compile Include="Serialization\JsonObjectDeserializerTests.cs" />
-    <Compile Include="Serialization\JsonSerializerTests.cs" />
-    <Compile Include="JsonTests.cs" />
-    <Compile Include="Serialization\JsonValueDeserializerTests.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Denobrium.Json\Denobrium.Json.csproj">
-      <Project>{A1265491-7E30-4196-9842-4A7944C18F0D}</Project>
-      <Name>Denobrium.Json</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>

@@ -11,7 +11,7 @@ namespace Denobrium.Json.Tests.Helpers
             get { return typeof(CustomTypeClass.CustomType); }
         }
 
-        public string TypeName
+        public string? TypeName
         {
             get { return null; }
         }

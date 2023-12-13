@@ -7,7 +7,7 @@ namespace Denobrium.Json.Tests.Helpers.ParameterRelated
 {
     public class CustomTypeClass
     {
-        public CustomType Custom
+        public CustomType? Custom
         {
             get;
             set;
@@ -15,7 +15,7 @@ namespace Denobrium.Json.Tests.Helpers.ParameterRelated
 
         public class CustomType
         {
-            public object Value
+            public object? Value
             {
                 get;
                 set;

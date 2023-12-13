@@ -138,7 +138,7 @@ namespace Denobrium.Json.Tests.Registry
 
         public class TypeDescriptorMock : JsonTypeDescriptor
         {
-            public Type ResolvedType = null;
+            public Type ResolvedType = null!;
 
             protected override Type ResolveType(string typeName)
             {
@@ -202,10 +202,9 @@ namespace Denobrium.Json.Tests.Registry
         public void JsonTypeDescriptor_TryGetType()
         {
             JsonTypeDescriptor descriptor = new JsonTypeDescriptor();
-            Type type = null;
-            String typeName = this.GetType().AssemblyQualifiedName;
+            String typeName = this.GetType().AssemblyQualifiedName!;
 
-            var found = descriptor.TryGetType(typeName, out type);
+            var found = descriptor.TryGetType(typeName, out Type type);
 
             Assert.IsTrue(found);
             Assert.IsNotNull(type);
@@ -217,8 +216,7 @@ namespace Denobrium.Json.Tests.Registry
         {
             JsonTypeDescriptor descriptor = new JsonTypeDescriptor();
 
-            Type type = null;
-            Assert.IsFalse(descriptor.TryGetType(null, out type));
+            Assert.IsFalse(descriptor.TryGetType(null, out Type type));
         }
 
         public class JsonTypeDescriptor_Accessor : JsonTypeDescriptor

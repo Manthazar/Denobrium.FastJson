@@ -197,9 +197,9 @@ namespace Denobrium.Json.Tests
             Assert.AreEqual(1, target.TimeSpan.Hours);
             Assert.AreEqual(2, target.TimeSpan.Minutes);
             Assert.AreEqual(3, target.TimeSpan.Seconds);
-            Assert.AreEqual(4, target.NullableTimeSpan.Value.Hours);
-            Assert.AreEqual(5, target.NullableTimeSpan.Value.Minutes);
-            Assert.AreEqual(6, target.NullableTimeSpan.Value.Seconds);
+            Assert.AreEqual(4, target.NullableTimeSpan!.Value.Hours);
+            Assert.AreEqual(5, target.NullableTimeSpan!.Value.Minutes);
+            Assert.AreEqual(6, target.NullableTimeSpan!.Value.Seconds);
         }
 
         [TestMethod]
@@ -306,15 +306,15 @@ namespace Denobrium.Json.Tests
             var jsonObject = (JsonObject)decoder.Deserialize(ref jsonString);
             decoder.BuildUp(target, jsonObject);
 
-            Assert.AreEqual(source.booleanValue, target.booleanValue);
-            Assert.AreEqual(new DateTime(source.date.Year, source.date.Month, source.date.Day, source.date.Hour, source.date.Minute, source.date.Second), target.date);
-            Assert.AreEqual(source.multilineString, target.multilineString);
-            Assert.AreEqual(source.ordinaryDecimal, target.ordinaryDecimal);
-            Assert.AreEqual(source.ordinaryDouble, target.ordinaryDouble);
-            Assert.AreEqual(source.laststring, target.laststring);
-            Assert.AreEqual(source.nullableGuid, target.nullableGuid);
-            Assert.AreEqual(source.nullableDecimal, target.nullableDecimal);
-            Assert.AreEqual(source.nullableDouble, target.nullableDouble);
+            Assert.AreEqual(source.BooleanValue, target.BooleanValue);
+            Assert.AreEqual(new DateTime(source.Date.Year, source.Date.Month, source.Date.Day, source.Date.Hour, source.Date.Minute, source.Date.Second), target.Date);
+            Assert.AreEqual(source.MultilineString, target.MultilineString);
+            Assert.AreEqual(source.OrdinaryDecimal, target.OrdinaryDecimal);
+            Assert.AreEqual(source.OrdinaryDouble, target.OrdinaryDouble);
+            Assert.AreEqual(source.Laststring, target.Laststring);
+            Assert.AreEqual(source.NullableGuid, target.NullableGuid);
+            Assert.AreEqual(source.NullableDecimal, target.NullableDecimal);
+            Assert.AreEqual(source.NullableDouble, target.NullableDouble);
         }
 
         [TestMethod]

@@ -1,22 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Denobrium.Json.Tests.Helpers.ComplexTypes
+﻿namespace Denobrium.Json.Tests.Helpers.ComplexTypes
 {
     public class SubClass2 : BaseClass
     {
         public SubClass2()
         { }
 
-        public SubClass2(string name, string code, string desc)
+        public SubClass2(string name, string code, string description)
         {
             Name = name;
             Code = code;
-            description = desc;
+            Description = description;
         }
 
-        public string description { get; set; }
+        public string Description { get; set; } = null!;
     }
 }

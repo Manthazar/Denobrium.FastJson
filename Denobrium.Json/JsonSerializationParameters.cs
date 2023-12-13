@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Denobrium.Json
+﻿namespace Denobrium.Json
 {
     /// <summary>
     /// Represents a set of parameters which apply only to serialization.
@@ -19,8 +14,8 @@ namespace Denobrium.Json
         /// </summary>
         public bool IncludeReadOnly
         {
-            get { return _includeReadOnly; }
-            set { _includeReadOnly = value; }
+            get => _includeReadOnly; 
+            set => _includeReadOnly = value; 
         }
 
         /// <summary>
@@ -28,8 +23,8 @@ namespace Denobrium.Json
         /// </summary>
         public bool SerializeNullValues
         {
-            get { return _serializeNullValues; }
-            set { _serializeNullValues = value; }
+            get => _serializeNullValues; 
+            set => _serializeNullValues = value; 
         }
 
         /// <summary>
@@ -37,8 +32,8 @@ namespace Denobrium.Json
         /// </summary>
         public bool UseOptimizedDatasetSchema
         {
-            get { return _useOptimizedDatasetSchema; }
-            set { _useOptimizedDatasetSchema = value; }
+            get => _useOptimizedDatasetSchema; 
+            set => _useOptimizedDatasetSchema = value;
         }
     }
 }

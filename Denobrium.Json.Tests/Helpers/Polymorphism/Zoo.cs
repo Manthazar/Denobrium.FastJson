@@ -7,7 +7,7 @@ namespace Denobrium.Json.Tests.Helpers.Polymorphism
 {
     public class Zoo
     {
-        public List<Animal> Animals
+        public List<Animal>? Animals
         {
             get;
             set;

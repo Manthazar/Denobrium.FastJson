@@ -11,7 +11,7 @@ namespace Denobrium.Json.TestsHelpers.StandardTypes
     public class EnumerableClass
     {
         [DataMember]
-        public IEnumerable Enumeration
+        public IEnumerable? Enumeration
         {
             get;
             set;

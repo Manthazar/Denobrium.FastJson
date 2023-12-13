@@ -7,7 +7,7 @@ namespace Denobrium.Json.Tests.Helpers.ComplexTypes
 {
     public class BaseClass
     {
-        public string Name { get; set; }
-        public string Code { get; set; }
+        public string? Name { get; set; }
+        public string? Code { get; set; }
     }
 }

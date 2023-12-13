@@ -1,12 +1,8 @@
-﻿using System;
-using System.Linq;
-using Denobrium.Json;
-using Denobrium.Json.Serialization;
-using Denobrium.Json.Tests.Helpers;
-using Denobrium.Json.TestsHelpers.StandardTypes;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Denobrium.Json.Tests.Helpers.ComplexTypes;
+﻿using Denobrium.Json.Serialization;
 using Denobrium.Json.Tests.Data.Helpers.StandardTypes;
+using Denobrium.Json.Tests.Helpers;
+using Denobrium.Json.Tests.Helpers.ComplexTypes;
+using Denobrium.Json.TestsHelpers.StandardTypes;
 
 namespace Denobrium.Json.Tests
 {
@@ -159,7 +155,7 @@ namespace Denobrium.Json.Tests
 
             var result = (DateTimeClass)decoder.Deserialize(ref jsonString, typeof(DateTimeClass));
             Assert.AreEqual(DateTimeKind.Utc, result.DateTime.Kind);
-            Assert.AreEqual(DateTimeKind.Utc, result.NullableDateTime.Value.Kind);
+            Assert.AreEqual(DateTimeKind.Utc, result.NullableDateTime!.Value.Kind);
 
             Assert.AreEqual(new DateTime(1955, 3, 4, 9, 22, 33), result.DateTime);
             Assert.AreEqual(new DateTime(1956, 4, 5, 8, 22, 33), result.NullableDateTime);
@@ -172,9 +168,9 @@ namespace Denobrium.Json.Tests
             String jsonString = "{\"ByteArray\":\"AQID\",\"ByteEnumeration\":null}";
 
             var result = (ByteArrayClass)decoder.Deserialize(ref jsonString, typeof(ByteArrayClass));
-            Assert.AreEqual(1, result.ByteArray[0]);
-            Assert.AreEqual(2, result.ByteArray[1]);
-            Assert.AreEqual(3, result.ByteArray[2]);
+            Assert.AreEqual(1, result!.ByteArray[0]);
+            Assert.AreEqual(2, result!.ByteArray[1]);
+            Assert.AreEqual(3, result!.ByteArray[2]);
         }
 
         [TestMethod]
@@ -194,8 +190,8 @@ namespace Denobrium.Json.Tests
             String jsonString = "{\"Dictionary\":[{\"k\":1,\"v\":2},{\"k\":3,\"v\":5}]}";
 
             var result = (DictionaryClass<int, int>)decoder.Deserialize(ref jsonString, typeof(DictionaryClass<int, int>));
-            Assert.AreEqual(2, result.Dictionary[1]);
-            Assert.AreEqual(5, result.Dictionary[3]);
+            Assert.AreEqual(2, result!.Dictionary[1]);
+            Assert.AreEqual(5, result!.Dictionary[3]);
         }
 
         [TestMethod]
@@ -205,8 +201,8 @@ namespace Denobrium.Json.Tests
             String jsonString = "{\"Enumeration\":[1,2,3]}";
 
             var result = (EnumerableClass)decoder.Deserialize(ref jsonString, typeof(EnumerableClass));
-            Assert.AreEqual((Int64)1, result.Enumeration.OfType<Object>().ElementAt(0));
-            Assert.AreEqual((Int64)2, result.Enumeration.OfType<Object>().ElementAt(1));
+            Assert.AreEqual((Int64)1, result!.Enumeration.OfType<Object>().ElementAt(0));
+            Assert.AreEqual((Int64)2, result!.Enumeration.OfType<Object>().ElementAt(1));
         }
 
         #endregion

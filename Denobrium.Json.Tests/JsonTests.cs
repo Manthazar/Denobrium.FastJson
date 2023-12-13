@@ -162,7 +162,7 @@ namespace Denobrium.Json.Tests
 
             var result = (DateTimeClass)Json.Current.ReadObject(jsonString, typeof(DateTimeClass));
             Assert.AreEqual(DateTimeKind.Utc, result.DateTime.Kind);
-            Assert.AreEqual(DateTimeKind.Utc, result.NullableDateTime.Value.Kind);
+            Assert.AreEqual(DateTimeKind.Utc, result.NullableDateTime!.Value.Kind);
             Assert.AreEqual(new DateTime(1955, 3, 4, 9, 22, 33), result.DateTime, "DateTime.Kind is unspecified; no transformation should have been done.");
             Assert.AreEqual(new DateTime(1956, 4, 5, 8, 22, 33), result.NullableDateTime, "DateTime.Kind is unspecified; no transformation should have been done.");
         }
@@ -247,8 +247,8 @@ namespace Denobrium.Json.Tests
             String jsonString = "{\"Dictionary\":[{\"k\":1,\"v\":2},{\"k\":3,\"v\":5}]}";
 
             var result = (DictionaryClass<int, int>)Json.Current.ReadObject(jsonString, typeof(DictionaryClass<int, int>));
-            Assert.AreEqual(2, result.Dictionary[1]);
-            Assert.AreEqual(5, result.Dictionary[3]);
+            Assert.AreEqual(2, result!.Dictionary[1]);
+            Assert.AreEqual(5, result!.Dictionary[3]);
         }
 
         [TestMethod]
@@ -257,8 +257,8 @@ namespace Denobrium.Json.Tests
             String jsonString = "{\"Enumeration\":[1,2,3]}";
 
             var result = (EnumerableClass)Json.Current.ReadObject(jsonString, typeof(EnumerableClass));
-            Assert.IsInstanceOfType(result.Enumeration.OfType<Object>().ElementAt(0), typeof(JsonPrimitive));
-            Assert.IsInstanceOfType(result.Enumeration.OfType<Object>().ElementAt(1), typeof(JsonPrimitive));
+            Assert.IsInstanceOfType(result.Enumeration!.OfType<Object>().ElementAt(0), typeof(JsonPrimitive));
+            Assert.IsInstanceOfType(result.Enumeration!.OfType<Object>().ElementAt(1), typeof(JsonPrimitive));
         }
 
         [TestMethod]
