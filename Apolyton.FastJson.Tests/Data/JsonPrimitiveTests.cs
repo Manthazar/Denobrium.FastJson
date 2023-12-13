@@ -99,6 +99,21 @@ namespace Apolyton.FastJson.Tests.Data
         }
 
         [TestMethod]
+        public void JsonPrimitive_Decimal()
+        {
+            JsonPrimitive primitive = new JsonPrimitive("5");
+            Assert.AreEqual(5m, (decimal)primitive);
+        }
+
+        [TestMethod]
+        public void JsonPrimitive_Decimal_WhenWithSeparator()
+        {
+            JsonPrimitive primitive = new JsonPrimitive("5.23");
+            Assert.AreEqual(5.23m, (decimal)primitive);
+        }
+
+
+        [TestMethod]
         public void JsonPrimitive_Double()
         {
             JsonPrimitive primitive = new JsonPrimitive("5");
@@ -106,7 +121,7 @@ namespace Apolyton.FastJson.Tests.Data
         }
 
         [TestMethod]
-        public void JsonPrimitive_Double_Fractioned()
+        public void JsonPrimitive_Double_WhenWithSeparator()
         {
             JsonPrimitive primitive = new JsonPrimitive("5.23");
             Assert.AreEqual(5.23, (double)primitive);
@@ -115,6 +130,13 @@ namespace Apolyton.FastJson.Tests.Data
 
         [TestMethod]
         public void JsonPrimitive_Float()
+        {
+            JsonPrimitive primitive = new JsonPrimitive("523");
+            Assert.AreEqual(523f, (float)primitive);
+        }
+
+        [TestMethod]
+        public void JsonPrimitive_Float_WhenWithSeparator()
         {
             JsonPrimitive primitive = new JsonPrimitive("5.23");
             Assert.AreEqual(5.23f, (float)primitive);

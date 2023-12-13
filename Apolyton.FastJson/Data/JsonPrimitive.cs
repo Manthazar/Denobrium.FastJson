@@ -171,6 +171,17 @@ namespace Apolyton.FastJson.Data
         /// </summary>
         /// <param name="primitive"></param>
         /// <returns></returns>
+        public static explicit operator decimal(JsonPrimitive primitive)
+        {
+            return ((IConvertible)primitive).ToDecimal(null);
+        }
+
+
+        /// <summary>
+        /// Returns an double representing the json primitive.
+        /// </summary>
+        /// <param name="primitive"></param>
+        /// <returns></returns>
         public static explicit operator double(JsonPrimitive primitive)
         {
             return ((IConvertible)primitive).ToDouble(null);
@@ -396,17 +407,28 @@ namespace Apolyton.FastJson.Data
         {
             if (_typedValue == null)
             {
-                _typedValue = decimal.Parse(_localValue);
+                _typedValue = decimal.Parse(_localValue, CultureInfo.InvariantCulture);
             }
 
             return (decimal)_typedValue;
         }
 
+        float IConvertible.ToSingle(IFormatProvider provider)
+        {
+            if (_typedValue == null)
+            {
+                _typedValue = float.Parse(_localValue, CultureInfo.InvariantCulture);
+            }
+
+            return (float)_typedValue;
+        }
+
+
         double IConvertible.ToDouble(IFormatProvider provider)
         {
             if (_typedValue == null)
             {
-                _typedValue = double.Parse(_localValue);
+                _typedValue = double.Parse(_localValue,CultureInfo.InvariantCulture);
             }
 
             return (Double)_typedValue;
@@ -445,16 +467,6 @@ namespace Apolyton.FastJson.Data
         sbyte IConvertible.ToSByte(IFormatProvider provider)
         {
             throw new NotImplementedException();
-        }
-
-        float IConvertible.ToSingle(IFormatProvider provider)
-        {
-            if (_typedValue == null)
-            {
-                _typedValue = float.Parse(_localValue);
-            }
-
-            return (float)_typedValue;
         }
 
         string IConvertible.ToString(IFormatProvider provider)

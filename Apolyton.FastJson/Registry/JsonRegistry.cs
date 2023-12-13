@@ -249,7 +249,7 @@ namespace Apolyton.FastJson.Registry
                 info.DefaultValue = Activator.CreateInstance(t);
             }
 
-            if (info.IsClass && !info.IsString && !info.PropertyOrFieldType.IsAbstract && !info.IsArray)
+            if (_constructorCache.ContainsKey(t) == false && info.IsClass && !info.IsString && !info.PropertyOrFieldType.IsAbstract && !info.IsArray)
             {
                 info.Constructor = CreateDefaultConstructorMethod(t);
                 _constructorCache.Add(t, info.Constructor);
