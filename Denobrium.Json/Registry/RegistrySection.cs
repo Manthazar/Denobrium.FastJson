@@ -11,8 +11,7 @@ namespace Denobrium.Json.Registry
     /// </remarks>
     internal sealed class RegistrySection<TKey, TValue>
     {
-        private readonly object _padlock = new object();
-        private readonly Dictionary<TKey, TValue> _dictionary;
+        private readonly IDictionary<TKey, TValue> _map;
 
         /// <summary>
         /// Creates an instance of the class.
@@ -20,7 +19,7 @@ namespace Denobrium.Json.Registry
         /// <param name="capacity"></param>
         public RegistrySection()
         {
-            _dictionary = new Dictionary<TKey, TValue>();
+            _map = new Dictionary<TKey, TValue>();
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace Denobrium.Json.Registry
         /// <returns></returns>
         internal bool ContainsKey(TKey key)
         {
-            return _dictionary.ContainsKey(key);
+            return _map.ContainsKey(key);
         }
 
         /// <summary>
@@ -41,10 +40,7 @@ namespace Denobrium.Json.Registry
         /// <returns></returns>
         public bool TryGetValue(TKey key, out TValue value)
         {
-            lock (_padlock)
-            {
-                return _dictionary.TryGetValue(key, out value);
-            }
+            return _map.TryGetValue(key, out value);
         }
 
         /// <summary>
@@ -56,17 +52,11 @@ namespace Denobrium.Json.Registry
         {
             get
             {
-                lock (_padlock)
-                {
-                    return _dictionary[key];
-                }
+                return _map[key];
             }
             set
             {
-                lock (_padlock)
-                {
-                    _dictionary[key] = value;
-                }
+                _map[key] = value;
             }
         }
 
@@ -77,10 +67,7 @@ namespace Denobrium.Json.Registry
         /// <param name="value"></param>
         public void Add(TKey key, TValue value)
         {
-            lock (_padlock)
-            {
-                _dictionary.Add(key, value);
-            }
+            _map.Add(key, value);
         }
 
         /// <summary>
@@ -93,19 +80,16 @@ namespace Denobrium.Json.Registry
         /// <param name="value"></param>
         public bool TryAdd(TKey key, TValue value)
         {
-            lock (_padlock)
+            try
             {
-                try
-                {
-                    _dictionary.Add(key, value);
-                    return true;
-                }
-                catch (ArgumentException)
-                {
-                    // "An item with the same key has already been added"
-                    Debug.WriteLine("An item with the same key has already been added: " + key.ToString());
-                    return false;
-                }
+                _map.Add(key, value);
+                return true;
+            }
+            catch (ArgumentException)
+            {
+                // "An item with the same key has already been added"
+                Debug.WriteLine("An item with the same key has already been added: " + key.ToString());
+                return false;
             }
         }
 
@@ -114,10 +98,7 @@ namespace Denobrium.Json.Registry
         /// </summary>
         public void Clear()
         {
-            lock (_padlock)
-            {
-                _dictionary.Clear();
-            }
+            _map.Clear();
         }
 
         /// <summary>
@@ -125,7 +106,7 @@ namespace Denobrium.Json.Registry
         /// </summary>
         public IEnumerable<TValue> Values
         {
-            get { return _dictionary.Values; }
+            get { return _map.Values; }
         }
     }
 }
