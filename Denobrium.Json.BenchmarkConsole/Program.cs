@@ -10,15 +10,16 @@ namespace Denobrium.Json.Benchmark
         /// <param name="args"></param>
         public static void Main(string[] args)
         {
+            Console.WriteLine("OPTIONS");
+            Console.WriteLine("Include complex types?: (y)");
+            Console.Clear();
+
             Console.WriteLine("Denobrium.Json indicative benchmark tool.");
 
             Console.WriteLine("ENVIRONMENT");
             Console.WriteLine(".net version = " + Environment.Version);
 
-            Console.WriteLine("OPTIONS");
-            Console.WriteLine("Include complex types?: (c)");
-
-            if (Console.ReadKey().Key == ConsoleKey.C)
+            if (Console.ReadKey().Key == ConsoleKey.Y)
             {
                 BenchmarkOptions.Current.IncludeComplexTypes = true;
             }
@@ -28,35 +29,5 @@ namespace Denobrium.Json.Benchmark
             Console.ReadKey();
             Console.ReadKey();
         }
-
-        #region What is that?
-
-        private static string pser(object data)
-        {
-            System.Drawing.Point p = (System.Drawing.Point)data;
-            return p.X.ToString() + "," + p.Y.ToString();
-        }
-
-        private static object pdes(string data)
-        {
-            string[] ss = data.Split(',');
-
-            return new System.Drawing.Point(
-                int.Parse(ss[0]),
-                int.Parse(ss[1])
-                );
-        }
-
-        private static string tsser(object data)
-        {
-            return ((TimeSpan)data).Ticks.ToString();
-        }
-
-        private static object tsdes(string data)
-        {
-            return new TimeSpan(long.Parse(data));
-        }
-
-        #endregion
     }
 }

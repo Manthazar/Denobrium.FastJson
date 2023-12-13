@@ -51,8 +51,8 @@ namespace Denobrium.Json.Benchmark
                         new Spoon("Platinum", "P1",40)
                 };
 
-                result.HashTableValue.Add(new Knife("0", "hello", 5), new Spoon("1", "code", 54));
-                result.HashTableValue.Add(new Spoon("0", "hello", 40), new Knife("1", "code", 6));
+                //result.HashTableValue.Add(new Knife("0", "hello", 5), new Spoon("1", "code", 54));
+                //result.HashTableValue.Add(new Spoon("0", "hello", 40), new Knife("1", "code", 6));
 
                 result.SpoonMap.Add("name1", new Spoon("1", "code1", 50));
                 result.SpoonMap.Add("name2", new Spoon("2", "code2", 61));
