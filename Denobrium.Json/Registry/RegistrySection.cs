@@ -11,26 +11,14 @@ namespace Denobrium.Json.Registry
     /// </remarks>
     internal sealed class RegistrySection<TKey, TValue>
     {
-        private readonly IDictionary<TKey, TValue> _map;
-
-        /// <summary>
-        /// Creates an instance of the class.
-        /// </summary>
-        /// <param name="capacity"></param>
-        public RegistrySection()
-        {
-            _map = new Dictionary<TKey, TValue>();
-        }
+        private readonly Dictionary<TKey, TValue> _map = [];
 
         /// <summary>
         /// Returns true, if the given key is present in the registry.
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        internal bool ContainsKey(TKey key)
-        {
-            return _map.ContainsKey(key);
-        }
+        internal bool ContainsKey(TKey key) => _map.ContainsKey(key);
 
         /// <summary>
         /// Tries to return the value
@@ -50,14 +38,8 @@ namespace Denobrium.Json.Registry
         /// <returns></returns>
         public TValue this[TKey key]
         {
-            get
-            {
-                return _map[key];
-            }
-            set
-            {
-                _map[key] = value;
-            }
+            get => _map[key];
+            set => _map[key] = value;
         }
 
         /// <summary>
@@ -65,10 +47,7 @@ namespace Denobrium.Json.Registry
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
-        public void Add(TKey key, TValue value)
-        {
-            _map.Add(key, value);
-        }
+        public void Add(TKey key, TValue value) => _map.Add(key, value);
 
         /// <summary>
         /// Tries to adds the value to the given key and returns true, if it was possible.
@@ -96,17 +75,11 @@ namespace Denobrium.Json.Registry
         /// <summary>
         /// Removes all values from the dictionary.
         /// </summary>
-        public void Clear()
-        {
-            _map.Clear();
-        }
+        public void Clear() => _map.Clear();
 
         /// <summary>
         /// Gets the values... not thread safe.
         /// </summary>
-        public IEnumerable<TValue> Values
-        {
-            get { return _map.Values; }
-        }
+        public IEnumerable<TValue> Values => _map.Values;
     }
 }

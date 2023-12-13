@@ -38,7 +38,7 @@ namespace Denobrium.Json.Registry
         {
             foreach (Type type in assembly.GetTypes().Where(t => t.IsDefined(typeof(DataContractAttribute), false)))
             {
-                String name = CreateTypeName(type);
+                var name = CreateTypeName(type);
                 Register(type, name);
             }
         }

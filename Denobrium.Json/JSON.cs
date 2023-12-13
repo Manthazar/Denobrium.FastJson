@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Denobrium.Json.Common;
+﻿using Denobrium.Json.Common;
 using Denobrium.Json.Data;
 using Denobrium.Json.Registry;
 using Denobrium.Json.Serialization;
-
-#if DESKTOP 
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Data;
-#endif 
 
 namespace Denobrium.Json
 {
@@ -57,7 +54,7 @@ namespace Denobrium.Json
         /// <returns></returns>
         public byte[] ToJsonBytes(object obj)
         {
-            String jsonString = ToJson(obj, _defaultParameters);
+            var jsonString = ToJson(obj, _defaultParameters);
 
             return _defaultParameters.Encoding.GetBytes(jsonString);
         }
@@ -65,22 +62,23 @@ namespace Denobrium.Json
         /// <summary>
         /// Returns a json string for the given object.
         /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Code sugar: inlines with existing ToJson method which uses local variables")]
         public string ToJson(object source, JsonParameters param)
         {
             Guard.ArgumentNotNull(source, "obj");
             Guard.ArgumentNotNull(param, "param");
 
-            Type t = null;
+            //Type t = null;
 
             if (source == null)
             {
                 return "null";
             }
 
-            if (source.GetType().IsGenericType)
-            {
-                t = source.GetType().GetGenericTypeDefinition();
-            }
+            //if (source.GetType().IsGenericType)
+            //{
+            //    t = source.GetType().GetGenericTypeDefinition();
+            //}
 
             return new JsonSerializer(param).Serialize(source);
         }
@@ -96,15 +94,13 @@ namespace Denobrium.Json
 
             if (jsonValue == null) { return; }
 
-            JsonObject valueAsObject = jsonValue as JsonObject;
-            if (valueAsObject != null)
+            if (jsonValue is JsonObject valueAsObject)
             {
                 new JsonValueDeserializer(_defaultParameters).BuildUp(instanceToBuild, valueAsObject);
             }
-            else 
+            else
             {
-                JsonArray valueAsArray = jsonValue as JsonArray;
-                if (valueAsArray != null)
+                if (jsonValue is JsonArray valueAsArray)
                 {
                     new JsonValueDeserializer(_defaultParameters).BuildUp(instanceToBuild, valueAsArray);
                 }
@@ -247,9 +243,8 @@ namespace Denobrium.Json
         /// </summary>
         /// <param name="instanceToBuild">A non-null instance which is populated with the provided values</param>
         /// <param name="values">The values which should fill the given instance.</param>
-        /// <param name="throwOnMissingValue">If true, it throws an exception when a specified (by the instance) value is not present in the json object.</param>
         /// <exception cref="ArgumentNullException"/>
-        internal void BuildUp(Object instanceToBuild, JsonObject values, bool throwOnMissingValue)
+        internal void BuildUp(Object instanceToBuild, JsonObject values)
         {
             Guard.ArgumentNotNull(instanceToBuild, "instanceToBuild");
             Guard.ArgumentNotNull(values, "values");
@@ -262,7 +257,7 @@ namespace Denobrium.Json
         /// </summary>
         /// <param name="jsonString"></param>
         /// <returns></returns>
-        public string Beautify(string jsonString)
+        public static string Beautify(string jsonString)
         {
             Guard.ArgumentNotNull(jsonString, "jsonString");
 
@@ -307,18 +302,15 @@ namespace Denobrium.Json
         /// <summary>
         /// Gets the json instance.
         /// </summary>
-        public static Json Current
-        {
-            get { return _current ?? (_current = new Json()); }
-        }
+        public static Json Current => _current ??= new Json(); 
 
         /// <summary>
         /// Gets or sets the default parameters.
         /// </summary>
         public JsonParameters DefaultParameters
         {
-            get { return _defaultParameters; }
-            set { _defaultParameters = value; }
+            get => _defaultParameters; 
+            set => _defaultParameters = value; 
         }
     }
 

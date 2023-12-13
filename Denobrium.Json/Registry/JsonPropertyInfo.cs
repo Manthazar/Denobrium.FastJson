@@ -1,5 +1,4 @@
 ﻿using System;
-using Denobrium.Json.Registry;
 
 namespace Denobrium.Json.Registry
 {
@@ -11,7 +10,7 @@ namespace Denobrium.Json.Registry
         /// <summary>
         /// The empty instance.
         /// </summary>
-        internal static JsonPropertyInfo Empty = new JsonPropertyInfo();
+        internal static JsonPropertyInfo Empty = new();
 
         /// <summary>
         /// Specifies the type of the member.
@@ -208,25 +207,6 @@ namespace Denobrium.Json.Registry
             return !(a == b);
         }
 
-        /// <summary>
-        /// Returns the hash code.
-        /// </summary>
-        /// <returns></returns>
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
-
-        /// <summary>
-        /// Returns true, if the objects are equal.
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public override bool Equals(object obj)
-        {
-            return base.Equals(obj);
-        }
-
         private void CopyFrom(JsonPropertyInfo info)
         {
             CanWrite = info.CanWrite;
@@ -267,9 +247,9 @@ namespace Denobrium.Json.Registry
             Constructor = info.Constructor;
         }
 
-        internal JsonPropertyInfo Clone()
+        internal readonly JsonPropertyInfo Clone()
         {
-            JsonPropertyInfo info = new JsonPropertyInfo();
+            var info = new JsonPropertyInfo();
             info.CopyFrom(this);
             return info;
         }
@@ -287,13 +267,16 @@ namespace Denobrium.Json.Registry
         /// Returns a lightweight object, which describes the serialization criteria.
         /// </summary>
         /// <returns></returns>
-        internal JsonSerializationInfo ToSerializationInfo()
+        internal readonly JsonSerializationInfo ToSerializationInfo()
         {
-            JsonSerializationInfo info = new JsonSerializationInfo();
-            info.JsonFieldName = JsonFieldName;
-            info.MemberName = PropertyOrFieldName;
-            info.MemberType = PropertyOrFieldType;
-            info.DeclaringType = DeclaringType;
+            var info = new JsonSerializationInfo()
+            {
+                JsonFieldName = JsonFieldName,
+                MemberName = PropertyOrFieldName,
+                MemberType = PropertyOrFieldType,
+                DeclaringType = DeclaringType,
+            };
+
             info.MemberDisplayName = info.MemberName;
 
             if (GenericTypes == null)
@@ -312,9 +295,6 @@ namespace Denobrium.Json.Registry
         /// Returns a more meaningful string representing the info object.
         /// </summary>
         /// <returns></returns>
-        public override string ToString()
-        {
-            return String.Format("{0}: {1}", PropertyOrFieldName, PropertyOrFieldType);
-        }
+        public override readonly string ToString() => String.Format("{0}: {1}", PropertyOrFieldName, PropertyOrFieldType);
     }
 }

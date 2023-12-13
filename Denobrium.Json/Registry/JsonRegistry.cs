@@ -1,15 +1,13 @@
-﻿using System;
+﻿using Denobrium.Json.Common;
+using Denobrium.Json.Serialization;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Runtime.Serialization;
-using Denobrium.Json.Serialization;
-
-#if DESKTOP
-using System.Data;
-#endif
 
 
 namespace Denobrium.Json.Registry
@@ -24,14 +22,14 @@ namespace Denobrium.Json.Registry
     /// </remarks>
     public sealed class JsonRegistry
     {
-        private static readonly Type[] _genericSetterArguments = new Type[2] { typeof(object), typeof(object) };
-        private static readonly Type[] _genericGetterArguments = new Type[1] { typeof(object) };
+        private static readonly Type[] _genericSetterArguments = [typeof(object), typeof(object)];
+        private static readonly Type[] _genericGetterArguments = [typeof(object)];
 
         private readonly JsonParameters _owner;
 
         private readonly RegistrySection<Type, JsonPropertyInfo> _typeInfo;
         private readonly RegistrySection<Type, CreateObjectHandler> _constructorCache;
-        private readonly RegistrySection<Type, IEnumerable<GetterDescriptor>> _gettersCache;
+        private readonly RegistrySection<Type, IEnumerable<GetterDescriptor>> _getterCache;
         private readonly RegistrySection<string, RegistrySection<string, JsonPropertyInfo>> _propertycache;
 
         internal JsonTypeDescriptor TypeDescriptor;
@@ -43,6 +41,8 @@ namespace Denobrium.Json.Registry
         /// </summary>
         internal JsonRegistry(JsonParameters owner)
         {
+            Guard.ArgumentNotNull(owner, nameof(owner));
+
             _owner = owner;
 
             TypeDescriptor = new JsonTypeDescriptor();
@@ -51,7 +51,7 @@ namespace Denobrium.Json.Registry
 
             _typeInfo = new RegistrySection<Type, JsonPropertyInfo>();
             _constructorCache = new RegistrySection<Type, CreateObjectHandler>();
-            _gettersCache = new RegistrySection<Type, IEnumerable<GetterDescriptor>>();
+            _getterCache = new RegistrySection<Type, IEnumerable<GetterDescriptor>>();
             _propertycache = new RegistrySection<string, RegistrySection<string, JsonPropertyInfo>>();
         }
 
@@ -69,7 +69,7 @@ namespace Denobrium.Json.Registry
 
             _typeInfo.Clear();
             _constructorCache.Clear();
-            _gettersCache.Clear();
+            _getterCache.Clear();
             _propertycache.Clear();
         }
 
@@ -109,9 +109,7 @@ namespace Denobrium.Json.Registry
         /// <returns></returns>
         internal bool IsCustomTypeRegistered(Type t)
         {
-            SerializationHandler s;
-
-            return CustomSerializers.TryGetValue(t, out s);
+            return CustomSerializers.TryGetValue(t, out SerializationHandler s);
         }
 
         #endregion
@@ -127,9 +125,7 @@ namespace Denobrium.Json.Registry
         {
             try
             {
-                CreateObjectHandler constructorHandler = null;
-
-                if (_constructorCache.TryGetValue(t, out constructorHandler))
+                if (_constructorCache.TryGetValue(t, out CreateObjectHandler constructorHandler))
                 {
                     return constructorHandler();
                 }
@@ -168,7 +164,7 @@ namespace Denobrium.Json.Registry
         {
             if (t.IsClass)
             {
-                DynamicMethod dynMethod = new DynamicMethod("_", t, null);
+                var dynMethod = new DynamicMethod("_", t, null);
                 ILGenerator ilGen = dynMethod.GetILGenerator();
                 ilGen.Emit(OpCodes.Newobj, t.GetConstructor(Type.EmptyTypes));
                 ilGen.Emit(OpCodes.Ret);
@@ -177,16 +173,12 @@ namespace Denobrium.Json.Registry
             }
             else // structs
             {
-#if DESKTOP
-                DynamicMethod dynMethod = new DynamicMethod("_",
+                var dynMethod = new DynamicMethod("_",
                     MethodAttributes.Public | MethodAttributes.Static,
                     CallingConventions.Standard,
                     typeof(object),
                     null,
                     t, false);
-#elif SILVERLIGHT
-                DynamicMethod dynMethod = new DynamicMethod("_", typeof(Object), null);
-#endif
 
                 ILGenerator ilGen = dynMethod.GetILGenerator();
 
@@ -203,13 +195,15 @@ namespace Denobrium.Json.Registry
 
         private JsonPropertyInfo CreateJsonPropertyInfo(Type t)
         {
-            JsonPropertyInfo info = new JsonPropertyInfo();
-            info.CanWrite = true;
-            info.PropertyOrFieldType = t;
-            info.IsDictionary = typeof(IDictionary).IsAssignableFrom(t);
-            info.IsValueType = t.IsValueType;
-            info.IsGenericType = t.IsGenericType;
-            info.IsArray = t.IsArray;
+            var info = new JsonPropertyInfo
+            {
+                CanWrite = true,
+                PropertyOrFieldType = t,
+                IsDictionary = typeof(IDictionary).IsAssignableFrom(t),
+                IsValueType = t.IsValueType,
+                IsGenericType = t.IsGenericType,
+                IsArray = t.IsArray
+            };
 
             if (info.IsArray)
             {
@@ -224,12 +218,9 @@ namespace Denobrium.Json.Registry
 
             info.IsByteArray = t == typeof(byte[]);
             info.IsGuid = (t == typeof(Guid) || t == typeof(Guid?));
-
-#if DESKTOP
             info.IsHashtable = t == typeof(Hashtable);
             info.IsDataSet = t == typeof(DataSet);
             info.IsDataTable = t == typeof(DataTable);
-#endif
             info.NullableType = GetNullableType(t);
             info.IsEnum = t.IsEnum;
             info.IsDateTime = t == typeof(DateTime) || t == typeof(DateTime?);
@@ -259,10 +250,11 @@ namespace Denobrium.Json.Registry
             {
                 info.IsCustomType = true;
             }
+
             return info;
         }
 
-        private Type GetNullableType(Type targetType)
+        private static Type GetNullableType(Type targetType)
         {
             if (targetType.IsGenericType && targetType.GetGenericTypeDefinition().Equals(typeof(Nullable<>)))
             {
@@ -280,12 +272,8 @@ namespace Denobrium.Json.Registry
         /// <returns></returns>
         private static GenericSetterHandler CreateSetField(Type type, FieldInfo fieldInfo)
         {
-#if DESKTOP
-            DynamicMethod dynamicSet = new DynamicMethod("_", typeof(object), _genericSetterArguments, type, true);
-#elif SILVERLIGHT
-            DynamicMethod dynamicSet = new DynamicMethod("_", typeof(object), _genericSetterArguments);
-#endif
-            ILGenerator il = dynamicSet.GetILGenerator();
+            var dynamicSet = new DynamicMethod("_", typeof(object), _genericSetterArguments, type, true);
+            var il = dynamicSet.GetILGenerator();
 
             if (!type.IsClass) // structs
             {
@@ -325,15 +313,15 @@ namespace Denobrium.Json.Registry
         /// <returns></returns>
         private static GenericSetterHandler CreateSetMethod(Type type, PropertyInfo propertyInfo)
         {
-            MethodInfo setMethod = propertyInfo.GetSetMethod();
+            var setMethod = propertyInfo.GetSetMethod();
 
             if (setMethod == null)
             {
                 return null;
             }
 
-            DynamicMethod setter = new DynamicMethod("_", typeof(object), _genericSetterArguments);
-            ILGenerator il = setter.GetILGenerator();
+            var setter = new DynamicMethod("_", typeof(object), _genericSetterArguments);
+            var il = setter.GetILGenerator();
 
             if (!type.IsClass) // structs
             {
@@ -389,12 +377,8 @@ namespace Denobrium.Json.Registry
         /// <returns></returns>
         private static GenericGetterHandler CreateGetField(Type type, FieldInfo fieldInfo)
         {
-#if DESKTOP
-            DynamicMethod dynamicGet = new DynamicMethod("_", typeof(object), _genericGetterArguments, type, true);
-#elif SILVERLIGHT
-            DynamicMethod dynamicGet = new DynamicMethod("_", typeof(object), _genericGetterArguments);
-#endif
-            ILGenerator il = dynamicGet.GetILGenerator();
+            var dynamicGet = new DynamicMethod("_", typeof(object), _genericGetterArguments, type, true);
+            var il = dynamicGet.GetILGenerator();
 
             if (!type.IsClass) // structs
             {
@@ -429,7 +413,7 @@ namespace Denobrium.Json.Registry
         /// <returns></returns>
         private static GenericGetterHandler CreateGetMethod(Type owningType, PropertyInfo propertyInfo)
         {
-            MethodInfo getMethod = propertyInfo.GetGetMethod();
+            var getMethod = propertyInfo.GetGetMethod();
 
             if (getMethod == null)
             {
@@ -437,21 +421,8 @@ namespace Denobrium.Json.Registry
                 return null;
             }
 
-#if DESKTOP
-            DynamicMethod getter = new DynamicMethod("_", typeof(object), _genericGetterArguments, owningType);
-#elif SILVERLIGHT
-            if (propertyInfo.GetSetMethod() == null || owningType.IsNotPublic)
-            {
-                // In Silverlight the rules are a bit odd. If the setter is not public or the owning type, our nice generic 
-                // getter will fail due to a type access exception.
-
-                return new GenericGetterHandler(owmer => getMethod.Invoke(owmer, null));
-            }
-
-            DynamicMethod getter = new DynamicMethod("_", typeof(object), _genericGetterArguments);
-#endif
-
-            ILGenerator il = getter.GetILGenerator();
+            var getter = new DynamicMethod("_", typeof(object), _genericGetterArguments, owningType);
+            var il = getter.GetILGenerator();
 
             if (!owningType.IsClass) // structs
             {
@@ -488,30 +459,30 @@ namespace Denobrium.Json.Registry
         /// <returns></returns>
         internal IEnumerable<GetterDescriptor> GetGetters(Type type)
         {
-            IEnumerable<GetterDescriptor> result = null;
-            if (_gettersCache.TryGetValue(type, out result))
+            if (_getterCache.TryGetValue(type, out IEnumerable<GetterDescriptor> result))
             {
                 return result;
             }
 
             var propertiesAndFields = GetPropertiesAndFields(type, null);
-
-            List<GetterDescriptor> getters = new List<GetterDescriptor>();
+            var getters = new List<GetterDescriptor>();
 
             foreach (JsonPropertyInfo property in propertiesAndFields.Values)
             {
                 if (property.Getter == null) { continue; } // Can be for non public getter.
 
-                GetterDescriptor gg = new GetterDescriptor();
-                gg.Name = property.JsonFieldName;
-                gg.Getter = property.Getter;
-                gg.PropertyOrFieldType = property.PropertyOrFieldType;
-                gg.DefaultValue = property.DefaultValue;
+                var descriptor = new GetterDescriptor
+                {
+                    Name = property.JsonFieldName,
+                    Getter = property.Getter,
+                    PropertyOrFieldType = property.PropertyOrFieldType,
+                    DefaultValue = property.DefaultValue
+                };
 
-                getters.Add(gg);
+                getters.Add(descriptor);
             }
 
-            _gettersCache.Add(type, getters);
+            _getterCache.Add(type, getters);
 
             return getters;
         }
@@ -523,9 +494,7 @@ namespace Denobrium.Json.Registry
         /// <returns></returns>
         internal JsonPropertyInfo GetTypeInfo(Type targetType)
         {
-            JsonPropertyInfo result;
-
-            if (!_typeInfo.TryGetValue(targetType, out result))
+            if (!_typeInfo.TryGetValue(targetType, out JsonPropertyInfo result))
             {
                 result = CreateJsonPropertyInfo(targetType);
 
@@ -543,89 +512,86 @@ namespace Denobrium.Json.Registry
         /// <returns></returns>
         internal RegistrySection<string, JsonPropertyInfo> GetPropertiesAndFields(Type type, string typename)
         {
-            RegistrySection<string, JsonPropertyInfo> propertyDescription = null;
+            typename ??= type.FullName;
 
-            if (typename == null) { typename = type.FullName; }
-
-            if (_propertycache.TryGetValue(typename, out propertyDescription))
+            if (_propertycache.TryGetValue(typename, out RegistrySection<string, JsonPropertyInfo>  cachedDescription))
             {
-                return propertyDescription;
+                return cachedDescription;
             }
             else
             {
-                propertyDescription = new RegistrySection<string, JsonPropertyInfo>();
+                var propertyDescription = new RegistrySection<string, JsonPropertyInfo>();
 
-                PropertyInfo[] properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+                var properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
                 foreach (PropertyInfo property in properties)
                 {
                     if (!IsSerializationMember(property)) { continue; }
                     if (!property.CanWrite && !_owner.Serialization.IncludeReadOnly) { continue; }
 
-                    String jsonFieldName = GetJsonFieldName(property);
-                    JsonPropertyInfo d = GetTypeInfo(property.PropertyType).Clone();
-                    d.CanWrite = property.CanWrite;
-                    d.JsonFieldName = jsonFieldName;
-                    d.PropertyOrFieldName = property.Name;
-                    d.DeclaringType = property.DeclaringType;
+                    var jsonFieldName = GetJsonFieldName(property);
+                    var pi = GetTypeInfo(property.PropertyType).Clone();
+                    pi.CanWrite = property.CanWrite;
+                    pi.JsonFieldName = jsonFieldName;
+                    pi.PropertyOrFieldName = property.Name;
+                    pi.DeclaringType = property.DeclaringType;
 
-                    if (property.CanRead) { d.Getter = JsonRegistry.CreateGetMethod(type, property); }
-                    else { d.Getter = null; }
+                    if (property.CanRead) { pi.Getter = JsonRegistry.CreateGetMethod(type, property); }
+                    else { pi.Getter = null; }
 
-                    if (property.CanWrite) { d.Setter = JsonRegistry.CreateSetMethod(type, property); }
-                    else { d.Setter = null; }
+                    if (property.CanWrite) { pi.Setter = JsonRegistry.CreateSetMethod(type, property); }
+                    else { pi.Setter = null; }
 
-                    if (d.IsDateTime && Attribute.IsDefined(property, typeof(JsonDateTimeOptionsAttribute)))
+                    if (pi.IsDateTime && Attribute.IsDefined(property, typeof(JsonDateTimeOptionsAttribute)))
                     {
                         var attr = (JsonDateTimeOptionsAttribute)property.GetCustomAttributes(typeof(JsonDateTimeOptionsAttribute), false).Single();
 
-                        d.DateTimeKind = attr.Kind;
-                        d.DateTimeFormat = attr.Format;
+                        pi.DateTimeKind = attr.Kind;
+                        pi.DateTimeFormat = attr.Format;
                     }
-#if DESKTOP
-                    if (d.Getter == null && d.Setter == null)
+
+                    if (pi.Getter == null && pi.Setter == null)
                     {
                         System.Diagnostics.Trace.WriteLine(String.Format("Member '{0}.{1}' is not properly decorated with DataMember/ IgnoreDataMemberAttribute, no accessible setter or getter found. Skipping.",
                             property.DeclaringType, property.Name));
 
                         continue;
                     }
-#endif
 
-                    if (!propertyDescription.TryAdd(jsonFieldName, d))
+                    if (!propertyDescription.TryAdd(jsonFieldName, pi))
                     {
                         throw new SerializationException(String.Format("The DataMember '{0}' is already used on the type '{1}'.", jsonFieldName, type));
                     }
 
-                    _typeInfo[d.PropertyOrFieldType] = d;
+                    _typeInfo[pi.PropertyOrFieldType] = pi;
                 }
 
-                FieldInfo[] fields = type.GetFields(BindingFlags.Public | BindingFlags.Instance);
+                var fields = type.GetFields(BindingFlags.Public | BindingFlags.Instance);
                 foreach (FieldInfo field in fields)
                 {
                     if (!IsSerializationMember(field)) { continue; }
 
-                    String jsonFieldName = GetJsonFieldName(field);
-                    JsonPropertyInfo d = CreateJsonPropertyInfo(field.FieldType).Clone();
-                    d.CanWrite = true;
-                    d.Setter = JsonRegistry.CreateSetField(type, field);
-                    d.Getter = JsonRegistry.CreateGetField(type, field);
-                    d.PropertyOrFieldName = field.Name;
-                    d.JsonFieldName = jsonFieldName;
-                    d.DeclaringType = field.DeclaringType;
+                    var jsonFieldName = GetJsonFieldName(field);
+                    var pi = CreateJsonPropertyInfo(field.FieldType).Clone();
+                    pi.CanWrite = true;
+                    pi.Setter = JsonRegistry.CreateSetField(type, field);
+                    pi.Getter = JsonRegistry.CreateGetField(type, field);
+                    pi.PropertyOrFieldName = field.Name;
+                    pi.JsonFieldName = jsonFieldName;
+                    pi.DeclaringType = field.DeclaringType;
 
-                    if (d.IsDateTime && Attribute.IsDefined(field, typeof(JsonDateTimeOptionsAttribute)))
+                    if (pi.IsDateTime && Attribute.IsDefined(field, typeof(JsonDateTimeOptionsAttribute)))
                     {
                         var attr = (JsonDateTimeOptionsAttribute)field.GetCustomAttributes(typeof(JsonDateTimeOptionsAttribute), false).Single();
 
-                        d.DateTimeKind = attr.Kind;
+                        pi.DateTimeKind = attr.Kind;
                     }
 
-                    if (!propertyDescription.TryAdd(jsonFieldName, d))
+                    if (!propertyDescription.TryAdd(jsonFieldName, pi))
                     {
                         throw new SerializationException(String.Format("The DataMember '{0}' is already used on the type '{1}'.", jsonFieldName, type));
                     }
 
-                    _typeInfo[d.PropertyOrFieldType] = d;
+                    _typeInfo[pi.PropertyOrFieldType] = pi;
                 }
 
                 _propertycache.Add(typename, propertyDescription);

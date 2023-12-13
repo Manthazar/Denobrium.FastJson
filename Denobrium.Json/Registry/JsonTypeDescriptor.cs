@@ -33,24 +33,22 @@ namespace Denobrium.Json.Registry
         /// <exception cref="SerializationException">If the type does not have a proper name.</exception>
         internal String GetTypeName(Type type)
         {
-            string val = "";
-
-            if (_typeNameCache.TryGetValue(type, out val))
+            if (_typeNameCache.TryGetValue(type, out string name))
             {
-                return val;
+                return name;
             }
             else
             {
-                string s = CreateTypeName(type);
+                string calculatedName = CreateTypeName(type);
 
-                if (String.IsNullOrEmpty(s))
+                if (String.IsNullOrEmpty(calculatedName))
                 {
                     throw new SerializationException(String.Format("TypeDescriptor cannot return create a name for type '{0}' (value was empty)", type));
                 }
 
-                _typeNameCache.Add(type, s);
+                _typeNameCache.Add(type, calculatedName);
 
-                return s;
+                return calculatedName;
             }
         }
 
@@ -62,19 +60,18 @@ namespace Denobrium.Json.Registry
         /// <exception cref="ApplicationException">If the type name could not be resolved into a proper name.</exception>
         internal Type GetType(String typeName)
         {
-            Type val = null;
-            if (_typeCache.TryGetValue(typeName, out val))
+            if (_typeCache.TryGetValue(typeName, out Type val))
             {
                 return val;
             }
             else
             {
-                Type t = ResolveType(typeName);
+                var type = ResolveType(typeName);
 
-                VerifyType(t, typeName);
+                VerifyType(type, typeName);
 
-                _typeCache.Add(typeName, t);
-                return t;
+                _typeCache.Add(typeName, type);
+                return type;
             }
         }
 
@@ -118,33 +115,13 @@ namespace Denobrium.Json.Registry
         /// Verifies that the resolved type is within expectations or throws an exception.
         /// </summary>
         /// <param name="t"></param>
+        /// <exception cref="SerializationException"></exception>
         private static void VerifyType(Type type, String typeName)
         {
             if (type == null)
             {
                 throw new SerializationException(String.Format("TypeDescriptor could not resolve the type with name '{0}'.", typeName));
             }
-
-            // This is only relevant, if we deserialize. On client side however, the class might not be abstract anymore.
-            //if (type.IsAbstract)
-            //{
-            //    throw new SerializationException(String.Format("The type '{0}' is abstract which is not acceptable since it cannot be constructed. (name was '{1}')", type, typeName));
-            //}
-
-#if SILVERLIGHT
-            if (!type.IsPublic)
-            {
-                throw new SerializationException(String.Format("The type '{0}' is a non-public type. It must be public for deserialization purposes. (name was '{1}')", type, typeName));
-            }
-#endif
-
-            // This is only relevant for deserialization...
-            //var defaultConstructor = type.GetConstructor(Type.EmptyTypes);
-
-            //if (defaultConstructor == null)
-            //{
-            //    throw new ApplicationException(String.Format("The type '{0}' is not offering a public default constructor which is mandatory.", type));
-            //}
         }
 
         /// <summary>
@@ -174,20 +151,14 @@ namespace Denobrium.Json.Registry
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        protected virtual String CreateTypeName(Type type)
-        {
-            return type.AssemblyQualifiedName;
-        }
+        protected virtual String CreateTypeName(Type type) => type.AssemblyQualifiedName;
 
         /// <summary>
         /// Returns the type for the given type name.
         /// </summary>
         /// <param name="typeName"></param>
         /// <returns></returns>
-        protected virtual Type ResolveType(String typeName)
-        {
-            return Type.GetType(typeName);
-        }
+        protected virtual Type ResolveType(String typeName) => Type.GetType(typeName);
 
         /// <summary>
         /// Resets the descriptor.
