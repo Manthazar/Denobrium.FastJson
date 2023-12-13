@@ -195,7 +195,14 @@ namespace Apolyton.FastJson
 
             var targetInstance = _defaultParameters.Registry.CreateInstanceFast(targetType);
 
-            deserializer.BuildUp(targetInstance, (JsonObject)jsonValue);
+            if (jsonValue.Type == JsonType.JsonObject)
+            {
+                deserializer.BuildUp(targetInstance, (JsonObject)jsonValue);
+            }
+            else
+            {
+                deserializer.BuildUp(targetInstance, (JsonArray)jsonValue);
+            }
 
             return targetInstance;
         }

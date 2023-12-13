@@ -264,7 +264,7 @@ namespace Apolyton.FastJson.Tests
         [TestMethod]
         public void Json_ReadObject_GenericList()
         {
-            String jsonString = "{[1,2,3]}";
+            String jsonString = "[1,2,3]";
 
             var result = (List<int>)Json.Current.ReadObject(jsonString, typeof(List<int>));
             Assert.IsTrue(result.Contains(1));
