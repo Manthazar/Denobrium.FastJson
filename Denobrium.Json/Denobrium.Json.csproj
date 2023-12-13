@@ -2,12 +2,18 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <OutputType>Library</OutputType>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
     <AssemblyTitle>Apolyton FastJson</AssemblyTitle>
-    <Product>Apolyton FastJson</Product>
-    <Copyright>Copyright ©  2012</Copyright>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
+    <Product>Denobrium Json</Product>
+    <Copyright>Copyright ©  2023</Copyright>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <FileVersion>2.0.0.0</FileVersion>
+    <Title>Denobrium Json</Title>
+    <Company>Denobrium</Company>
+    <PackageProjectUrl>https://github.com/Manthazar/Denobrium.FastJson</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Manthazar/Denobrium.FastJson</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>json</PackageTags>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>..\Output\Debug\</OutputPath>
