@@ -41,13 +41,13 @@ namespace Denobrium.Json.Common
         /// </summary>
         /// <exception cref="ArgumentNullException">When argumentValue is null.</exception>
         /// <exception cref="ArgumentException">When argumentValue is null.</exception>
-        public static void FileExists(String fileName, String argumentName)
+        public static void FileExists(String fileName)
         {
             ArgumentNotNull(fileName, "fileName");
 
             if (!File.Exists(fileName))
             {
-                throw new ArgumentException("File not found: " + fileName, "fileName");
+                throw new ArgumentException("File not found: " + fileName, nameof(fileName));
             }
         }
 
@@ -78,7 +78,6 @@ namespace Denobrium.Json.Common
         public static void ArgumentNotEmpty(ref Guid argumentValue,
                                             string argumentName)
         {
-            if (argumentValue == null) throw new ArgumentNullException(argumentName);
             if (argumentValue == Guid.Empty) throw new ArgumentException("Argument must not me empty", argumentName);
         }
 
@@ -131,11 +130,7 @@ namespace Denobrium.Json.Common
         public static void TypeIsAssignable(Type assignmentTargetType, Type assignmentValueType, string argumentName)
         {
             TypeIsAssignable(assignmentTargetType, assignmentValueType, argumentName,
-                string.Format(
-                    CultureInfo.CurrentCulture,
-                    "Types are not assignable",
-                    assignmentTargetType,
-                    assignmentValueType));
+                $"Types are not assignable: target:{assignmentTargetType}, value:{assignmentValueType}");
         }
 
         /// <summary>
@@ -151,8 +146,8 @@ namespace Denobrium.Json.Common
         [DebuggerStepThrough]
         public static void TypeIsAssignable(Type assignmentTargetType, Type assignmentValueType, string argumentName, string detailedMessage)
         {
-            if (assignmentTargetType == null) throw new ArgumentNullException("assignmentTargetType");
-            if (assignmentValueType == null) throw new ArgumentNullException("assignmentValueType");
+            ArgumentNullException.ThrowIfNull(assignmentTargetType, argumentName);
+            ArgumentNullException.ThrowIfNull(assignmentValueType, argumentName);
 
             if (!assignmentTargetType.IsAssignableFrom(assignmentValueType))
             {
@@ -172,8 +167,8 @@ namespace Denobrium.Json.Common
         [DebuggerStepThrough]
         public static void TypeEquals(Type assignmentTargetType, Type assignmentValueType, string argumentName, string detailedMessage)
         {
-            if (assignmentTargetType == null) throw new ArgumentNullException("assignmentTargetType");
-            if (assignmentValueType == null) throw new ArgumentNullException("argumentName");
+            ArgumentNullException.ThrowIfNull(assignmentTargetType, argumentName);
+            ArgumentNullException.ThrowIfNull(assignmentValueType, argumentName);
 
             if (assignmentTargetType.GetType() != assignmentValueType.GetType())
             {

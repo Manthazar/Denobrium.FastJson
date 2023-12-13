@@ -10,7 +10,7 @@ namespace Denobrium.Json.TestsHelpers.StandardTypes
     public class StringClass
     {
         [DataMember]
-        public String String
+        public String? String
         {
             get;
             set;

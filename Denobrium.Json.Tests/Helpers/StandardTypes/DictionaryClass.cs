@@ -10,7 +10,7 @@ namespace Denobrium.Json.Tests.Helpers
     public class DictionaryClass<TKey, TValue>
     {
         [DataMember]
-        public Dictionary<TKey, TValue> Dictionary
+        public Dictionary<TKey, TValue>? Dictionary
         {
             get;
             set;

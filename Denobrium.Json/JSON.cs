@@ -68,17 +68,10 @@ namespace Denobrium.Json
             Guard.ArgumentNotNull(source, "obj");
             Guard.ArgumentNotNull(param, "param");
 
-            //Type t = null;
-
             if (source == null)
             {
                 return "null";
             }
-
-            //if (source.GetType().IsGenericType)
-            //{
-            //    t = source.GetType().GetGenericTypeDefinition();
-            //}
 
             return new JsonSerializer(param).Serialize(source);
         }

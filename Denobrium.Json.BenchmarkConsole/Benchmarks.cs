@@ -30,6 +30,7 @@ namespace Denobrium.Json.Benchmark
             //ApolytonFastJsonBenchmarks.DeserializeByType();
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>")]
         private static void WriteHeader()
         {
             if (Console.BufferWidth < 100)

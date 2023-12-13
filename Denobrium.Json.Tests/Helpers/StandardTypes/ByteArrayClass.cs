@@ -11,14 +11,14 @@ namespace Denobrium.Json.TestsHelpers.StandardTypes
     public class ByteArrayClass
     {
         [DataMember]
-        public byte[] ByteArray
+        public byte[]? ByteArray
         {
             get;
             set;
         }
 
         [DataMember]
-        public IEnumerable<Byte> ByteEnumeration
+        public IEnumerable<Byte>? ByteEnumeration
         {
             get;
             set;

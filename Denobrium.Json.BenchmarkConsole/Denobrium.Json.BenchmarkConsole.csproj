@@ -14,6 +14,7 @@
     <Product>consoletest</Product>
     <Copyright>Copyright 2011</Copyright>
     <AssemblyVersion>1.0.%2a</AssemblyVersion>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
     <RegisterForComInterop>False</RegisterForComInterop>

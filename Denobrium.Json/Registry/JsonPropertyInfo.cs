@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Denobrium.Json.Registry
 {
@@ -193,7 +194,7 @@ namespace Denobrium.Json.Registry
         /// <returns></returns>
         public static bool operator ==(JsonPropertyInfo a, JsonPropertyInfo b)
         {
-            return Object.ReferenceEquals(a, b);
+            return Object.Equals(a, b);
         }
 
         /// <summary>
@@ -290,6 +291,10 @@ namespace Denobrium.Json.Registry
 
             return info;
         }
+
+        public override readonly int GetHashCode() => base.GetHashCode();
+
+        public override readonly bool Equals([NotNullWhen(true)] object obj) => base.Equals(obj);
 
         /// <summary>
         /// Returns a more meaningful string representing the info object.

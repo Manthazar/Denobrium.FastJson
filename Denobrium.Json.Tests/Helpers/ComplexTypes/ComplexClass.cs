@@ -1,8 +1,6 @@
-﻿using System;
+﻿using Denobrium.Json.Tests.Helpers.ComplexTypes;
 using System.Collections;
-using System.Collections.Generic;
 using System.Data;
-using Denobrium.Json.Tests.Helpers.ComplexTypes;
 
 namespace Denobrium.Json.Tests.Helpers
 {
@@ -12,26 +10,26 @@ namespace Denobrium.Json.Tests.Helpers
         {
         }
 
-        public bool booleanValue { get; set; }
-        public DateTime date { get; set; }
-        public string multilineString { get; set; }
-        public List<BaseClass> items { get; set; }
-        public decimal ordinaryDecimal { get; set; }
-        public double ordinaryDouble { get; set; }
-        public string laststring { get; set; }
-        public Gender gender { get; set; }
+        public bool BooleanValue { get; set; }
+        public DateTime Date { get; set; }
+        public string? MultilineString { get; set; }
+        public List<BaseClass>? Items { get; set; }
+        public decimal? OrdinaryDecimal { get; set; }
+        public double? OrdinaryDouble { get; set; }
+        public string? Laststring { get; set; }
+        public Gender Gender { get; set; }
 
-        public DataSet dataset { get; set; }
-        public Dictionary<string, BaseClass> stringDictionary { get; set; }
-        public Dictionary<BaseClass, BaseClass> objectDictionary { get; set; }
-        public Dictionary<int, BaseClass> intDictionary { get; set; }
-        public Guid? nullableGuid { get; set; }
-        public decimal? nullableDecimal { get; set; }
-        public double? nullableDouble { get; set; }
-        public Hashtable hash { get; set; }
-        public BaseClass[] arrayType { get; set; }
-        public byte[] bytes { get; set; }
-        public int[] intarray { get; set; }
+        public DataSet? Dataset { get; set; }
+        public Dictionary<string, BaseClass>? StringDictionary { get; set; }
+        public Dictionary<BaseClass, BaseClass>? ObjectDictionary { get; set; }
+        public Dictionary<int, BaseClass>? IntDictionary { get; set; }
+        public Guid? NullableGuid { get; set; }
+        public decimal? NullableDecimal { get; set; }
+        public double? NullableDouble { get; set; }
+        public Hashtable? Hash { get; set; }
+        public BaseClass[]? ArrayType { get; set; }
+        public byte[]? Bytes { get; set; }
+        public int[]? IntArray { get; set; }
 
         /// <summary>
         /// Returns a new instance of the object populated with the standard fields plus according to given criteria.
@@ -43,61 +41,61 @@ namespace Denobrium.Json.Tests.Helpers
         {
             var c = new ComplexClass()
             {
-                booleanValue = true,
-                ordinaryDecimal = 3,
-                items = new List<BaseClass>(),
-                date = DateTime.UtcNow,
-                multilineString = @"
+                BooleanValue = true,
+                OrdinaryDecimal = 3,
+                Items = new List<BaseClass>(),
+                Date = DateTime.UtcNow,
+                MultilineString = @"
             AJKLjaskljLA
        ahjksjkAHJKS سلام فارسی
        AJKHSKJhaksjhAHSJKa
        AJKSHajkhsjkHKSJKash
        ASJKhasjkKASJKahsjk
             ",
-                ordinaryDouble = 0.001,
-                gender = Gender.Female,
-                intarray = new int[5] { 1, 2, 3, 4, 5 },
+                OrdinaryDouble = 0.001,
+                Gender = Gender.Female,
+                IntArray = new int[5] { 1, 2, 3, 4, 5 },
             };
 
-            c.items.Add(new SubClass1("1", "1", Guid.NewGuid()));
-            c.items.Add(new SubClass2("2", "2", "desc1"));
-            c.items.Add(new SubClass1("3", "3", Guid.NewGuid()));
-            c.items.Add(new SubClass2("4", "4", "desc2"));
+            c.Items.Add(new SubClass1("1", "1", Guid.NewGuid()));
+            c.Items.Add(new SubClass2("2", "2", "desc1"));
+            c.Items.Add(new SubClass1("3", "3", Guid.NewGuid()));
+            c.Items.Add(new SubClass2("4", "4", "desc2"));
 
-            c.laststring = "" + DateTime.Now;
+            c.Laststring = "" + DateTime.Now;
 
             if (exotic)
             {
-                c.nullableGuid = Guid.NewGuid();
-                c.hash = new Hashtable();
-                c.bytes = new byte[1024];
-                c.stringDictionary = new Dictionary<string, BaseClass>();
-                c.objectDictionary = new Dictionary<BaseClass, BaseClass>();
-                c.intDictionary = new Dictionary<int, BaseClass>();
-                c.nullableDouble = 100.003;
+                c.NullableGuid = Guid.NewGuid();
+                c.Hash = new Hashtable();
+                c.Bytes = new byte[1024];
+                c.StringDictionary = new Dictionary<string, BaseClass>();
+                c.ObjectDictionary = new Dictionary<BaseClass, BaseClass>();
+                c.IntDictionary = new Dictionary<int, BaseClass>();
+                c.NullableDouble = 100.003;
 
-                c.nullableDecimal = 3.14M;
+                c.NullableDecimal = 3.14M;
 
-                c.hash.Add(new SubClass1("0", "hello", Guid.NewGuid()), new SubClass2("1", "code", "desc"));
-                c.hash.Add(new SubClass2("0", "hello", "pppp"), new SubClass1("1", "code", Guid.NewGuid()));
+                c.Hash.Add(new SubClass1("0", "hello", Guid.NewGuid()), new SubClass2("1", "code", "desc"));
+                c.Hash.Add(new SubClass2("0", "hello", "pppp"), new SubClass1("1", "code", Guid.NewGuid()));
 
-                c.stringDictionary.Add("name1", new SubClass2("1", "code", "desc"));
-                c.stringDictionary.Add("name2", new SubClass1("1", "code", Guid.NewGuid()));
+                c.StringDictionary.Add("name1", new SubClass2("1", "code", "desc"));
+                c.StringDictionary.Add("name2", new SubClass1("1", "code", Guid.NewGuid()));
 
-                c.intDictionary.Add(1, new SubClass2("1", "code", "desc"));
-                c.intDictionary.Add(2, new SubClass1("1", "code", Guid.NewGuid()));
+                c.IntDictionary.Add(1, new SubClass2("1", "code", "desc"));
+                c.IntDictionary.Add(2, new SubClass1("1", "code", Guid.NewGuid()));
 
-                c.objectDictionary.Add(new SubClass1("0", "hello", Guid.NewGuid()), new SubClass2("1", "code", "desc"));
-                c.objectDictionary.Add(new SubClass2("0", "hello", "pppp"), new SubClass1("1", "code", Guid.NewGuid()));
+                c.ObjectDictionary.Add(new SubClass1("0", "hello", Guid.NewGuid()), new SubClass2("1", "code", "desc"));
+                c.ObjectDictionary.Add(new SubClass2("0", "hello", "pppp"), new SubClass1("1", "code", Guid.NewGuid()));
 
-                c.arrayType = new BaseClass[2];
-                c.arrayType[0] = new SubClass1();
-                c.arrayType[1] = new SubClass2();
+                c.ArrayType = new BaseClass[2];
+                c.ArrayType[0] = new SubClass1();
+                c.ArrayType[1] = new SubClass2();
             }
 
             if (includeDataSet)
             {
-                c.dataset = CreateDataset();
+                c.Dataset = CreateDataset();
             }
 
             return c;

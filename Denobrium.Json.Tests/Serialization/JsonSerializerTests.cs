@@ -317,7 +317,7 @@ namespace Denobrium.Json.Tests
             JsonSerializer serializer = new JsonSerializer(parameter);
             StringClass given = new StringClass()
             {
-                String = null,
+                String = null!,
             };
 
             String jsonString = serializer.Serialize(given);
@@ -333,7 +333,7 @@ namespace Denobrium.Json.Tests
             JsonSerializer serializer = new JsonSerializer(parameter);
             StringClass given = new StringClass()
             {
-                String = null,
+                String = null!,
             };
 
             String jsonString = serializer.Serialize(given);
