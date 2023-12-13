@@ -13,21 +13,20 @@ namespace Denobrium.Json.Benchmark
             Console.WriteLine("==== SERIALIZATION   ====");
             new DenobriumJsonBenchmarks.Serialize().Work();
 
-            new NewtonsoftBenchmarks.Serialize().Work(); 
-            //new BinaryFormatterBenchmarks.Serialize().Work();
+            new NewtonsoftBenchmarks.Serialize().Work();
+            new SystemTextJsonBenchmarks.Serialize().Work();
 
             Console.WriteLine("\n\n");
             Console.WriteLine("==== DESERIALIZATION ====");
             new DenobriumJsonBenchmarks.Deserialize_Into_DataClass().Work();
             //new DenobriumJsonBenchmarks.Deserialize_Into_JsonValue().Work();
             //new DenobriumJsonBenchmarks.Deserialize_BuildUp().Work();
+            //DenobriumJsonBenchmarks.Deserialize_JsonObject_BuildUp_NoTypeExtension();
+            //DenobriumJsonBenchmarks.Deserialize_JsonObject_BuildUp_DataContractTypeExtension();
+            //DenobriumJsonBenchmarks.DeserializeByType();
 
             new NewtonsoftBenchmarks.Deserialize_Into_DataClass().Work();
-            //new BinaryFormatterBenchmarks.Deserialize_Into_DataClass().Work();
-
-            //ApolytonFastJsonBenchmarks.Deserialize_JsonObject_BuildUp_NoTypeExtension();
-            //ApolytonFastJsonBenchmarks.Deserialize_JsonObject_BuildUp_DataContractTypeExtension();
-            //ApolytonFastJsonBenchmarks.DeserializeByType();
+            new SystemTextJsonBenchmarks.Deserialize_Into_DataClass().Work();
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>")]
